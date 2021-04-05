@@ -2,9 +2,9 @@
 
 ## Project by
 
---[Keith McGowan](https://www.github.com/keithmcgowan)  
---[Mario C Lange](https://www.github.com/marioclange)  
---[Martin Stoyanov](https://www.github.com/martinestoyanov)
+-[Keith McGowan](https://www.github.com/keithmcgowan)  
+-[Mario C Lange](https://www.github.com/marioclange)  
+-[Martin Stoyanov](https://www.github.com/martinestoyanov)
 
 ### Notes for setup
 
