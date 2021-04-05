@@ -8,9 +8,9 @@
 
 ### Notes for setup
 
---Ensure npm install is performed on repo clone.
---Server is started using npm start dev or npm start.
---Server is started on Port 3000 or as defined in .env file.
+-Ensure npm install is performed on repo clone.
+-Server is started using npm start dev or npm start.
+-Server is started on Port 3000 or as defined in .env file.
 
 ### Boilerplate generated with Ironlauncher
 
