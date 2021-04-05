@@ -1,8 +1,17 @@
-<h1>Ironhack Project 2</h1>
+# Ironhack PTWD Miami 2021 Project 2
 
-<p> Project by:
-<br> Keith McGowan (<a>github.com/keithmcgowan</a>)
-<br> Mario C Lange (<a>github.com/marioclange</a>)
-<br> Martin Stoyanov (<a>github.com/martinestoyanov</a>)
+## Project by
 
-<br> More Details to Follow!
+--[Keith McGowan](https://www.github.com/keithmcgowan)  
+--[Mario C Lange](https://www.github.com/marioclange)  
+--[Martin Stoyanov](https://www.github.com/martinestoyanov)
+
+### Notes for setup
+
+--Ensure npm install is performed on repo clone.
+--Server is started using npm start dev or npm start.
+--Server is started on Port 3000 or as defined in .env file.
+
+### Boilerplate generated with Ironlauncher
+
+### Stay tuned for more
