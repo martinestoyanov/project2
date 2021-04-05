@@ -1,11 +1,14 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+#to-left {
+  float: left;
+}
 
-a {
-  color: #00b7ff; }
+#to-right {
+  float: right;
+}
 
-h1 {
-  color: 15px; }
-
-/*# sourceMappingURL=style.css.map */
+nav {
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

@@ -14,4 +14,15 @@
 
 ### Boilerplate generated with Ironlauncher
 
+### .env file configuration
+
+please make sure your .env file includes the following:
+
+```text
+
+PORT=3000
+MONGODB_URI="mongodb://localhost/project2"
+
+```
+
 ### Stay tuned for more
