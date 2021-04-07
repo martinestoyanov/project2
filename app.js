@@ -18,6 +18,9 @@ app.use("/", index);
 const auth = require("./routes/auth");
 app.use("/", auth);
 
+const dev = require("./routes/dev");
+app.use("/dev/", dev);
+
 //Error Handling
 require("./error-handling")(app);
 
