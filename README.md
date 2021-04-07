@@ -1,4 +1,4 @@
-# Ironhack PTWD Miami 2021 Project 2
+# JapanimationStation
 
 ## Project by
 
