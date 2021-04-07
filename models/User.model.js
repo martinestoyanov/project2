@@ -5,13 +5,16 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: [true, "Username is required!"],
+      required: true,
       unique: true,
-      trim: true,
+      match: [/\S+@\S+\.\S+/, "Username must be in valid form"],
     },
     passwordHash: {
       type: String,
-      required: [true, "Password is required!" + String.fromCodePoint(0x1f644)],
+      required: true,
+      match: [  /(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{8,128}/,
+          "Password has to have one Alphabetic char one number or special char",
+        ],
     },
   },
   {
