@@ -7,14 +7,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [/\S+@\S+\.\S+/, "Username must be in valid form"],
+      match: [/\S+@\S+\.\S+/],
     },
     passwordHash: {
       type: String,
       required: true,
-      match: [  /(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{8,128}/,
-          "Password has to have one Alphabetic char one number or special char",
-        ],
+      match: [  /(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{8,128}/],
     },
   },
   {
