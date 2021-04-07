@@ -7,12 +7,17 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
       match: [/\S+@\S+\.\S+/],
     },
     passwordHash: {
       type: String,
       required: true,
-      match: [  /(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{8,128}/],
+      match: [/(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{8,128}/],
     },
   },
   {
