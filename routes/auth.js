@@ -8,15 +8,17 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
 
+// Signup Routes
+
 router.get("/signup", (req, res) => {
   // res.send("Hello")
-  res.render("./auth/signup", { title: "Sign up" });
+  res.render("auth/signup", { title: "Sign up" });
 });
 
 router.post("/signup", (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
-    res.render("./auth/signup", {
+    res.render("auth/signup", {
       title: "Sign Up",
       errorMessage: "All fields are required",
     });
@@ -44,7 +46,7 @@ router.post("/signup", (req, res) => {
     })
     .then((userFromDB) => {
       console.log(`Newly created user is : ${userFromDB}`);
-      res.redirect("/userProfile");
+      res.render("users/user-profile");
     })
     .catch((error) => {
       console.log(error);
@@ -62,8 +64,12 @@ router.post("/signup", (req, res) => {
   // console.log('Form Data:', req.body);
 });
 
+// Login Routes
+
+router.get("/login", (req, res) => res.render("auth/login"));
+
 router.post("/login", (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
 
   if (email === "" || password === "") {
     res.render("auth/login", {
@@ -80,7 +86,7 @@ router.post("/login", (req, res, next) => {
         });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        res.render("users/user-profile", { user });
+        res.redirect("/userProfile");
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }
@@ -88,8 +94,15 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-router.get("/userProfile", (req, res) => res.render("users/user-profile"));
+router.get("/userProfile", (req, res, next) => {
+  const { id } = req.params;
 
-router.get("/login", (req, res) => res.render("auth/login"));
+  User.findById(id)
+    .then((singleUser) => {
+      console.log(singleUser);
+      res.render("users/user-profile", { user: singleUser });
+    })
+    .catch((err) => next(err));
+});
 
 module.exports = router;
