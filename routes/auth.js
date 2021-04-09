@@ -79,14 +79,14 @@ router.post("/login", (req, res, next) => {
   }
 
   User.findOne({ email })
-    .then((userFound) => {
-      if (!userFound) {
+    .then((user) => {
+      if (!user) {
         res.render("auth/login", {
           errorMessage: "Email is not registered. Try with other email.",
         });
         return;
-      } else if (bcryptjs.compareSync(password, userFound.passwordHash)) {
-        res.redirect(`/userProfile/${userFound.username}`);
+      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        res.render(`users/user-profile`, { user });
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }
