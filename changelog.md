@@ -6,6 +6,15 @@ Please copy and paste the previous log to follow formatting standards.
 
 ## Log
 
+### 4/9/21 4:00 AM Martin  
+  
+- **Incorporated new npm packages, please run npm install**
+- Integrated Axios package for REST API interface
+- Created dev routes and views
+- Generated API middleware search function. Reference api.js and routes/dev.js
+- Dev search function displays json of response from API
+**END**
+
 ### 4/5/21 2:30 AM Martin  
   
 - Changelog creation  
