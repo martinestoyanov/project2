@@ -46,7 +46,7 @@ router.post("/signup", (req, res) => {
     })
     .then((userFromDB) => {
       console.log(`Newly created user is : ${userFromDB}`);
-      res.render("users/user-profile");
+      res.render("users/user-profile", { user: userFromDB });
     })
     .catch((error) => {
       console.log(error);
