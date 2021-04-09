@@ -17,4 +17,18 @@ const search = async (req, res, next) => {
   next();
 };
 
+const details = async (req, res, next) => {
+  const data = await api
+    .get(`/anime/${req.body.mal_id}`)
+    .then((result) => {
+      req.result = result.data;
+    })
+    .catch((error) => {
+      req.result = error;
+    });
+  next();
+};
+
+
 module.exports.search = search;
+module.exports.details = details;

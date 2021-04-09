@@ -5,12 +5,15 @@ router.get("/", (req, res, next) => {
   res.render("./dev/devSearch");
 });
 
-router.post("/", api.search, (req, res, next) => {
+
+router.post("/details", api.details, (req, res, next) => {
+  // res.render("./dev/devDetails");
   res.send(req.result);
 });
 
-router.get("/details", (req, res, next) => {
-  res.render("./dev/devDetails");
+
+router.post("/", api.search, (req, res, next) => {
+  res.send(req.result);
 });
 
 module.exports = router;
