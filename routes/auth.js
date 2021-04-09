@@ -7,6 +7,7 @@ const { NotExtended } = require("http-errors");
 const saltRounds = 10;
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 // Signup Routes
 
@@ -69,6 +70,7 @@ router.post("/signup", (req, res) => {
 router.get("/login", (req, res) => res.render("auth/login"));
 
 router.post("/login", (req, res, next) => {
+  console.log("Session", req.session);
   const { username, email, password } = req.body;
   console.log(req.body);
   if (email === "" || password === "") {
@@ -86,6 +88,8 @@ router.post("/login", (req, res, next) => {
         });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        req.session.user = user;
+        user.password = "";
         res.render(`users/user-profile`, { user });
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
@@ -95,8 +99,14 @@ router.post("/login", (req, res, next) => {
 });
 
 router.get("/userProfile/:username", (req, res, next) => {
-  const { username } = req.params;
-  res.render("users/user-profile", { username: username });
+  // const { username } = req.params;
+  res.render("users/user-profile", { user: req.session && req.session.user });
 });
-  
+
+// Lougout route
+router.get("/logout", (req, res, next) => {
+  req.session.destroy();
+  res.redirect("/");
+});
+
 module.exports = router;

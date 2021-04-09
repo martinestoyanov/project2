@@ -4,12 +4,12 @@ const express = require("express");
 const hbs = require("hbs");
 const app = express();
 
-
 //Middleware Config
 require("./config")(app);
+require("./config/session.config")(app);
 
 //Default title
-app.locals.title = `This is the title`;
+app.locals.title = `Welcome to the Animation Station!`;
 
 //Route Handling
 
