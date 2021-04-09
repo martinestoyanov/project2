@@ -70,7 +70,7 @@ router.get("/login", (req, res) => res.render("auth/login"));
 
 router.post("/login", (req, res, next) => {
   const { username, email, password } = req.body;
-
+  console.log(req.body);
   if (email === "" || password === "") {
     res.render("auth/login", {
       errorMessage: "Please enter both, email and password to login.",
@@ -79,14 +79,14 @@ router.post("/login", (req, res, next) => {
   }
 
   User.findOne({ email })
-    .then((user) => {
-      if (!user) {
+    .then((userFound) => {
+      if (!userFound) {
         res.render("auth/login", {
           errorMessage: "Email is not registered. Try with other email.",
         });
         return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-        res.redirect("/userProfile");
+      } else if (bcryptjs.compareSync(password, userFound.passwordHash)) {
+        res.redirect(`/userProfile/${userFound.username}`);
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }
@@ -94,15 +94,9 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-router.get("/userProfile", (req, res, next) => {
-  const { id } = req.params;
-
-  User.findById(id)
-    .then((singleUser) => {
-      console.log(singleUser);
-      res.render("users/user-profile", { user: singleUser });
-    })
-    .catch((err) => next(err));
+router.get("/userProfile/:username", (req, res, next) => {
+  const { username } = req.params;
+  res.render("users/user-profile", { username: username });
 });
-
+  
 module.exports = router;
