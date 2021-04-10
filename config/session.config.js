@@ -8,11 +8,11 @@ const sessionFn = (app) => {
       secret: "anime",
       cookie: {
         httpOnly: true,
-        maxAge: 60000,
+        maxAge: 86400000, //<= One day
       },
       store: new MongoStore({
         mongoUrl: process.env.MONGODB_URI,
-        ttl: 60 * 60 * 24, // 60 sec * 60 min * 24 hrs = 1 day
+        ttl: 1000 * 60 * 60 * 24, // 1000 ms * 60 sec * 60 min * 24 hrs = 1 day
       }),
     })
   );
