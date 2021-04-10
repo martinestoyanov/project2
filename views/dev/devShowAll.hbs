@@ -1,1 +1,8 @@
 DevShowAll view update
+{{!-- {{data}} --}}
+{{#each data}}
+<div style="display: flex; justify-content:space-around">
+  <p><a href="{{url}}">{{title}}</a></p>
+  <img src="{{image_url}}" alt="">
+</div>
+{{/each}}

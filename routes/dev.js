@@ -5,6 +5,10 @@ router.get("/", (req, res, next) => {
   res.render("./dev/devSearch");
 });
 
+router.post("/search", api.search, (req, res, next) => {
+  console.log(req.result);
+  res.render("./dev/devShowAll", { data: req.result.results });
+});
 
 router.get("/top", api.top, (req, res, next) => {
   // res.render("./dev/devSearch");
