@@ -14,6 +14,10 @@
 
 ### Boilerplate generated with Ironlauncher
 
+### API :
+
+[Jikan](https://jikan.docs.apiary.io/)
+
 ### .env file configuration
 
 please make sure your .env file includes the following:

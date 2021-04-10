@@ -6,10 +6,16 @@ router.get("/", (req, res, next) => {
 });
 
 
+router.get("/top", api.top, (req, res, next) => {
+  // res.render("./dev/devSearch");
+  res.send(req.result);
+});
+
 router.post("/details", api.details, (req, res, next) => {
   // res.render("./dev/devDetails");
   res.send(req.result);
 });
+
 
 
 router.post("/", api.search, (req, res, next) => {

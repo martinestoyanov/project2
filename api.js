@@ -29,6 +29,18 @@ const details = async (req, res, next) => {
   next();
 };
 
+const top = async (req, res, next) => {
+  const data = await api
+    .get(`/top/anime/`)
+    .then((result) => {
+      req.result = result.data;
+    })
+    .catch((error) => {
+      req.result = error;
+    });
+  next();
+};
 
 module.exports.search = search;
 module.exports.details = details;
+module.exports.top = top;
