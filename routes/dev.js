@@ -19,6 +19,10 @@ router.post("/details", api.details, (req, res, next) => {
   res.render("./dev/devDetails",req.result);
   // res.send(req.result);
 });
+// router.get("/detailsGet/:mal_id", api.detailsGet, (req, res, next) => {
+//   res.render("./dev/devDetails", req.result);
+//   // res.send(req.result);
+// });
 
 
 
