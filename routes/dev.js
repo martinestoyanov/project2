@@ -6,7 +6,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/search", api.search, (req, res, next) => {
-  console.log(req.result);
+  // console.log(req.result);
   res.render("./dev/devShowAll", { data: req.result.results });
 });
 
