@@ -29,17 +29,17 @@ const details = async (req, res, next) => {
   next();
 };
 
-// const detailsGet = async (req, res, next) => {
-//   const data = await api
-//     .get(`/anime/${req.param.mal_id}`)
-//     .then((result) => {
-//       req.result = result.data;
-//     })
-//     .catch((error) => {
-//       req.result = error;
-//     });
-//   next();
-// };
+const detailsGet = async (req, res, next) => {
+  const data = await api
+    .get(`/anime/${req.params.mal_id}`)
+    .then((result) => {
+      req.result = result.data;
+    })
+    .catch((error) => {
+      req.result = error;
+    });
+  next();
+};
 
 const top = async (req, res, next) => {
   const data = await api
@@ -56,4 +56,4 @@ const top = async (req, res, next) => {
 module.exports.search = search;
 module.exports.details = details;
 module.exports.top = top;
-// module.exports.detailsGet = detailsGet;
+module.exports.detailsGet = detailsGet;
