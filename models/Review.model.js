@@ -4,32 +4,32 @@ const reviewSchema = new Schema(
   {
     review: {
       type: String,
-      required: [true, 'Review cannot be empty!']
+    
     },
     score: {
-      type: Number,
-      min: [1, 'Rating cannot be below 1.0'],
-      max: [10, 'Rating cannot be above 10.0']
+      type     : Number,
+      required : true,
+      validate : {
+        validator : Number.isInteger,
+        message   : '{VALUE} is not an integer value'
+      }
     },
     createdAt: {
       type: Date,
       default: Date.now
     },
     user: {
-      type: mongoose.Schema.ObjectId,
+      type: ObjectId,
       ref: 'User',
       required: [true, 'Review must have an author']
     },
     anime: {
-      type: mongoose.Schema.ObjectId,
+      type: ObjectId,
       ref: 'Anime',
       required: [true, 'Review must belong to a anime']
     }
   },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-  }
+  
 );
 
 const Review = model("Review", reviewSchema);

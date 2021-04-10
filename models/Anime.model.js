@@ -5,6 +5,7 @@ const animeSchema = new Schema({
   
   title: String,
 
+  image_url: String,
 
   genre: {
     type: String,
