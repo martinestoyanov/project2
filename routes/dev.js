@@ -24,7 +24,10 @@ router.post("/details", api.details, (req, res, next) => {
 //   // res.send(req.result);
 // });
 
-
+router.post("/detailsJson", api.details, (req, res, next) => {
+  // res.render("./dev/devDetails",req.result);
+  res.send(req.result);
+});
 
 router.post("/", api.search, (req, res, next) => {
   res.send(req.result);
