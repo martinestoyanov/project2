@@ -12,8 +12,8 @@ router.get("/top", api.top, (req, res, next) => {
 });
 
 router.post("/details", api.details, (req, res, next) => {
-  // res.render("./dev/devDetails");
-  res.send(req.result);
+  res.render("./dev/devDetails",req.result);
+  // res.send(req.result);
 });
 
 
