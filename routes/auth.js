@@ -47,7 +47,8 @@ router.post("/signup", (req, res) => {
     })
     .then((userFromDB) => {
       console.log(`Newly created user is : ${userFromDB}`);
-      res.render("users/user-profile", { user: userFromDB });
+      req.session.userFromDB = user;
+      res.redirect("/userProfile");
     })
     .catch((error) => {
       console.log(error);
@@ -72,7 +73,7 @@ router.get("/login", (req, res) => res.render("auth/login"));
 router.post("/login", (req, res, next) => {
   console.log("Session", req.session);
   const { username, email, password } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   if (email === "" || password === "") {
     res.render("auth/login", {
       errorMessage: "Please enter both, email and password to login.",
