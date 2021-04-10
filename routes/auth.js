@@ -90,7 +90,7 @@ router.post("/login", (req, res, next) => {
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.user = user;
         user.password = "";
-        res.render(`users/user-profile`, { user });
+        res.redirect("/userProfile");
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
       }
@@ -98,7 +98,7 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-router.get("/userProfile/:username", (req, res, next) => {
+router.get("/userProfile", (req, res, next) => {
   // const { username } = req.params;
   res.render("users/user-profile", { user: req.session && req.session.user });
 });
