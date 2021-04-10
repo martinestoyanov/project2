@@ -6,10 +6,10 @@ const reviewSchema = new Schema(
       type: String,
       required: [true, 'Review cannot be empty!']
     },
-    rating: {
+    score: {
       type: Number,
       min: [1, 'Rating cannot be below 1.0'],
-      max: [5, 'Rating cannot be above 5.0']
+      max: [10, 'Rating cannot be above 10.0']
     },
     createdAt: {
       type: Date,
