@@ -1,8 +1,19 @@
 DevShowAll view update
-{{!-- {{data}} --}}
-{{#each data}}
-<div style="display: flex; justify-content:space-around">
-  <p><a href="{{url}}">{{title}}</a></p>
-  <img src="{{image_url}}" alt="">
+<div style="    
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    width: 100vw;">
+
+  {{#each data}}
+  <div style="display: flex;
+               align-items: center;
+                justify-content: center;
+                flex-flow: column wrap;
+                text-align: center">
+    <p><a href="{{url}}">{{title}}</a></p>
+    <img src="{{image_url}}" alt="">
+  </div>
+  {{/each}}
 </div>
-{{/each}}
