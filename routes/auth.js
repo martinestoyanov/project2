@@ -46,8 +46,9 @@ router.post("/signup", (req, res) => {
       });
     })
     .then((userFromDB) => {
-      console.log(`Newly created user is : ${userFromDB}`);
-      req.session.userFromDB = user;
+      // console.log(`Newly created user is : ${userFromDB}`);
+      req.session.user = userFromDB;
+      console.log("req.session.user", req.session.user);
       res.redirect("/userProfile");
     })
     .catch((error) => {
@@ -101,7 +102,9 @@ router.post("/login", (req, res, next) => {
 
 router.get("/userProfile", (req, res, next) => {
   // const { username } = req.params;
-  res.render("users/user-profile", { user: req.session && req.session.user });
+  // res.send(req.session);
+  // res.render("users/user-profile", { user: req.session && req.session.userFromDB });  <----Leaving just in case
+  res.render("users/user-profile", req.session);
 });
 
 // Lougout route
