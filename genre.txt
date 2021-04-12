@@ -1,5 +1,3 @@
-Anime Genre
-
 Action
 Adventure
 Cars

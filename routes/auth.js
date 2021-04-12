@@ -48,7 +48,7 @@ router.post("/signup", (req, res) => {
     .then((userFromDB) => {
       // console.log(`Newly created user is : ${userFromDB}`);
       req.session.user = userFromDB;
-      console.log("req.session.user", req.session.user);
+      // console.log("req.session.user", req.session.user);
       res.redirect("/userProfile");
     })
     .catch((error) => {
@@ -72,7 +72,7 @@ router.post("/signup", (req, res) => {
 router.get("/login", (req, res) => res.render("auth/login"));
 
 router.post("/login", (req, res, next) => {
-  console.log("Session", req.session);
+  // console.log("Session", req.session);
   const { username, email, password } = req.body;
   // console.log(req.body);
   if (email === "" || password === "") {
@@ -103,7 +103,7 @@ router.post("/login", (req, res, next) => {
 router.get("/userProfile", (req, res, next) => {
   // const { username } = req.params;
   // res.send(req.session);
-  // res.render("users/user-profile", { user: req.session && req.session.userFromDB });  <----Leaving just in case
+  // res.render("users/user-profile", { user: req.session && req.session.userFromDB });
   res.render("users/user-profile", req.session);
 });
 

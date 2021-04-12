@@ -5,3 +5,5 @@ document.addEventListener(
   },
   false
 );
+
+let rand = Math.floor(Math.random() * 10);
