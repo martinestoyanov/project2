@@ -8,7 +8,7 @@ const sessionFn = (app) => {
       secret: "anime",
       cookie: {
         httpOnly: true,
-        maxAge: 8640000,
+        maxAge: 86400000,
       },
       store: new MongoStore({
         mongoUrl: process.env.MONGODB_URI,
