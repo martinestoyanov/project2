@@ -2,11 +2,12 @@ const router = require("express").Router();
 const api = require("../api");
 
 /* GET home page */
-router.get("/", api.top10each, (req, res, next) => {
-  res.send(req.top10all);
+router.get("/", api.topAll, (req, res, next) => {
+  // res.send(req.top10all);
   // console.log(req.top10all);
-  // res.render("index", {
-    // session: req.session,
-  // });
+  res.render("index", {
+    session: req.session,
+    top10: req.top10all,
+  });
 });
 module.exports = router;
