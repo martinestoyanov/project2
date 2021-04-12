@@ -8,6 +8,22 @@ const app = express();
 require("./config")(app);
 require("./config/session.config")(app);
 
+//hbs Helpers
+// hbs.registerHelper("homeSearch", function (reqgenre) {
+//   console.log(reqgenre);
+//   const genreMap = {
+//     action: 1,
+//     adventure: 2,
+//     comedy: 4,
+//     fantasy: 10,
+//     magic: 16,
+//     mystery: 7,
+//     shounen: 27,
+//     unknown: 99,
+//   };
+//   console.log(genreMap[reqgenre]);
+// });
+
 //Default title
 app.locals.title = `Welcome to the Animation Station!`;
 

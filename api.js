@@ -13,7 +13,6 @@ const genreMap = {
   magic: 16,
   mystery: 7,
   shounen: 27,
-  unknown: 99,
 };
 
 const search = async (req, res, next) => {
@@ -65,21 +64,30 @@ const top = async (req, res, next) => {
 };
 
 //WIP to try to query multiple searches based on genre and sort by rating.
-// const top10each = async (req, res, next) => {
-//   for (const [genre, number] of Object.entries(genreMap)) {
-//     const data = await api
-//       .get(`/search/anime?q=&page=1?genre=${number}&order_by=score&sort=desc`)
-//       .then((result) => {
-//         req.result = { top10: result.data }
-//       })
-//       .catch((error) => {
-//         req.result = error;
-//       });
-//   }
-//   next();
-// };
-// module.exports.top10each = top10each;
+const top10each = async (req, res, next) => {
+  let top10eachobj = {};
+  for (const [genre, number] of Object.entries(genreMap)) {
+    const data = await api
+      .get(`/search/anime?q=&page=1?genre=${number}&order_by=score&sort=desc`)
+      .then((result) => {
+        top10eachobj[genre] = result.data.results;
+        // console.log(top10eachobj[genre].data.results.length);
+      })
+      .catch((error) => {
+        req.result = error;
+      });
+  }
+  // console.log(top10eachobj)
+  for (const [genre, arrayOfShows] of Object.entries(top10eachobj)) {
+    top10eachobj[genre] = arrayOfShows.splice(40);
+    console.log(genre, top10eachobj[genre].length);
+  }
 
+  req.top10all = top10eachobj;
+  next();
+};
+
+module.exports.top10each = top10each;
 module.exports.search = search;
 module.exports.details = details;
 module.exports.top = top;
