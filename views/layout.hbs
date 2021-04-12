@@ -7,28 +7,57 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>{{title}}</title>
    <link rel="stylesheet" href="/stylesheets/style.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
 <body>
    <nav>
-      <div><a href="/"> Project 2 </a></div>
-      <dir>
-         <form action="/dev/search" method="post">
-            <input type="text" name="search" id="search">
-            <button type="submit">Search for an Anime</button>
-         </form>
-      </dir>
-      <div>
-         <a href="/dev/">Dev</a> <span> | </span>
-         <a href="/signup">Signup</a> <span> | </span>
-         <a href="/login">Login</a> <span> | </span>
-         <a href="/userProfile">Profile Page</a> <span> | </span>
-         <a href="/logout">Logout</a>
+      <div class="menu-icon"><span class="fas fa-bars"></span></div>
+      <div class="logo">JapanimationStation</div>
+      <div class="nav-items">
+         <li><a href="/">Home</a></li>
+         <li><a href="/dev/">Dev</a></li>
+         <li><a href="/signup">Signup</a></li>
+         <li><a href="/login">Login</a></li>
+         <li><a href="/userProfile">Profile Page</a></li>
+         <li><a href="/logout">Logout</a></li>
       </div>
+      <div class="search-icon"><span class="fas fa-search"></span></div>
+      <div class="cancel-icon"><span class="fas fa-times"></span></div>
+      <form action="/dev/search" method="post">
+         <input type="search" name="search" class="search-data" placeholder="Search Animes" required>
+         <button type="submit" class="fas fa-search"></button>
+      </form>
    </nav>
 
    {{{body}}}
 
+   <script>
+      const menuBtn = document.querySelector(".menu-icon span");
+      const searchBtn = document.querySelector(".search-icon");
+      const cancelBtn = document.querySelector(".cancel-icon");
+      const items = document.querySelector(".nav-items");
+      const form = document.querySelector("form");
+      menuBtn.onclick = () => {
+         items.classList.add("active");
+         menuBtn.classList.add("hide");
+         searchBtn.classList.add("hide");
+         cancelBtn.classList.add("show");
+      };
+      cancelBtn.onclick = () => {
+         items.classList.remove("active");
+         menuBtn.classList.remove("hide");
+         searchBtn.classList.remove("hide");
+         cancelBtn.classList.remove("show");
+         form.classList.remove("active");
+         cancelBtn.style.color = "#ff3d00";
+      };
+      searchBtn.onclick = () => {
+         form.classList.add("active");
+         searchBtn.classList.add("hide");
+         cancelBtn.classList.add("show");
+      };
+   </script>
    <script src="/js/script.js"></script>
 </body>
 
