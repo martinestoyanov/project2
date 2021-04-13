@@ -1,6 +1,6 @@
 <h1>Your Profile Page</h1>
 
-<hr>
+<hr><br>
 
 <div>
 
@@ -8,17 +8,23 @@
 
   <div>
 
-    <img src="{{user.imageUrl}}" alt="Profile picture" style="width: 200px;">
+    <img src="{{user.imageUrl}}" alt="Profile picture" style="width: 200px;"><br>
 
     <div>
 
-      <h3>{{user.username}}</h3>
+      <h3>{{user.username}}</h3><br>
 
-      <p>{{user.email}}</p>
+      <p>{{user.email}}</p><br>
+
+      <p>Member since: {{user.createdAt}}</p><br>
+
+      <p>Number of animes reviewed: <a href="review link">some number</a></p><br>
 
       <a href="/userProfile/{{user._id}}/edit" class="btn btn-primary">Edit</a>
 
     </div>
+
+    <br>
 
     <img src="https://64.media.tumblr.com/404421fddab40e4853ae802a58de1ee4/tumblr_nlk442HDAR1rbtyq6o1_500.gifv"
       alt="Luffy fist pumping">
@@ -33,6 +39,18 @@
 
   {{/if}}
 
-  <hr />
+</div>
+
+<br><br><br>
+
+<div>
+
+  <h2>Recently Reviewed Animes</h2>
+
+  <hr><br>
+
+  <p>Display of 3 most recent reviews</p><br>
+
+  <a href="link to all user reviews">See all</a>
 
 </div>
