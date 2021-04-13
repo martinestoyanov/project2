@@ -8,6 +8,7 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const fileUploader = require("../config/cloudinary.config");
 
 // Signup Routes
 
@@ -16,7 +17,7 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup", { title: "Sign up" });
 });
 
-router.post("/signup", (req, res) => {
+router.post("/signup", fileUploader.single("image"), (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
     res.render("auth/signup", {
@@ -43,6 +44,7 @@ router.post("/signup", (req, res) => {
         username,
         email,
         passwordHash: hashedPassword,
+        imageUrl: req.file.path,
       });
     })
     .then((userFromDB) => {
@@ -107,6 +109,35 @@ router.get("/userProfile", (req, res, next) => {
   // res.render("users/user-profile", { user: req.session && req.session.userFromDB });
   res.render("users/user-profile", req.session);
 });
+
+// Edit routes
+router.get("/userProfile/:id/edit", (req, res, next) => {
+  const { id } = req.params;
+
+  User.findById(id)
+    .then((user) => res.render("users/user-edit", user))
+    .catch((err) => next(err));
+});
+
+router.post(
+  "/userProfile/:id/edit",
+  fileUploader.single("image"),
+  (req, res, next) => {
+    const { id } = req.params;
+    const { username, email } = req.body;
+
+    let imageUrl;
+    if (req.file) {
+      imageUrl = req.file.path;
+    } else {
+      imageUrl = req.body.existingImage;
+    }
+
+    User.findByIdAndUpdate(id, { username, email, imageUrl }, { new: true })
+      .then(() => res.redirect("/userProfile"))
+      .catch((err) => next(err));
+  }
+);
 
 // Lougout route
 router.get("/logout", (req, res, next) => {

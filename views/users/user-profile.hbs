@@ -1,16 +1,38 @@
-<p>{{#if user}}
-  Hi {{user.username}}! Welcome to your profile page!
-  {{else}}Sorry, stranger. You must be logged in.
+<h1>Your Profile Page</h1>
+
+<hr>
+
+<div>
+
+  {{#if user}}
+
+  <div>
+
+    <img src="{{user.imageUrl}}" alt="Profile picture" style="width: 200px;">
+
+    <div>
+
+      <h3>{{user.username}}</h3>
+
+      <p>{{user.email}}</p>
+
+      <a href="/userProfile/{{id}}/edit" class="btn btn-primary">Edit</a>
+
+    </div>
+
+    <img src="https://64.media.tumblr.com/404421fddab40e4853ae802a58de1ee4/tumblr_nlk442HDAR1rbtyq6o1_500.gifv"
+      alt="Luffy fist pumping">
+
+  </div>
+
+  {{else}}
+
+  <p>Sorry, stranger. You must be logged in.</p>
+
+  <img src="https://media0.giphy.com/media/wzWxTUiXRQDYc/200.gif" alt="Luffy picking nose">
+
   {{/if}}
-</p>
 
-<p>{{user.username}}</p>
-<p>{{user.email}}</p>
-<p>{{user.passwordHash}}</p>
+  <hr />
 
-{{#if user}}
-<img src="https://64.media.tumblr.com/404421fddab40e4853ae802a58de1ee4/tumblr_nlk442HDAR1rbtyq6o1_500.gifv"
-  alt="Luffy fist pumping">
-{{else}}
-<img src="https://media0.giphy.com/media/wzWxTUiXRQDYc/200.gif" alt="Luffy picking nose">
-{{/if}}
+</div>
