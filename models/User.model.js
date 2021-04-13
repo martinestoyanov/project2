@@ -19,6 +19,7 @@ const userSchema = new Schema(
       required: true,
       match: [/(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{8,128}/],
     },
+    imageUrl: String,
   },
   {
     timestamps: true,

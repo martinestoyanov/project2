@@ -8,6 +8,7 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const fileUploader = require("../config/cloudinary.config");
 
 // Signup Routes
 
@@ -16,7 +17,7 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup", { title: "Sign up" });
 });
 
-router.post("/signup", (req, res) => {
+router.post("/signup", fileUploader.single("image"), (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
     res.render("auth/signup", {
@@ -43,11 +44,14 @@ router.post("/signup", (req, res) => {
         username,
         email,
         passwordHash: hashedPassword,
+        imageUrl: req.file.path,
       });
     })
     .then((userFromDB) => {
-      console.log(`Newly created user is : ${userFromDB}`);
-      req.session.userFromDB = user;
+      // console.log(`Newly created user is : ${userFromDB}`);
+      req.session.user = userFromDB;
+      req.session.user.passwordHash = "";
+      // console.log("req.session.user", req.session.user);
       res.redirect("/userProfile");
     })
     .catch((error) => {
@@ -71,7 +75,7 @@ router.post("/signup", (req, res) => {
 router.get("/login", (req, res) => res.render("auth/login"));
 
 router.post("/login", (req, res, next) => {
-  console.log("Session", req.session);
+  // console.log("Session", req.session);
   const { username, email, password } = req.body;
   // console.log(req.body);
   if (email === "" || password === "") {
@@ -89,8 +93,8 @@ router.post("/login", (req, res, next) => {
         });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+        user.passwordHash = "";
         req.session.user = user;
-        user.password = "";
         res.redirect("/userProfile");
       } else {
         res.render("auth/login", { errorMessage: "Incorrect password." });
@@ -101,8 +105,39 @@ router.post("/login", (req, res, next) => {
 
 router.get("/userProfile", (req, res, next) => {
   // const { username } = req.params;
-  res.render("users/user-profile", { user: req.session && req.session.user });
+  // res.send(req.session);
+  // res.render("users/user-profile", { user: req.session && req.session.userFromDB });
+  res.render("users/user-profile", req.session);
 });
+
+// Edit routes
+router.get("/userProfile/:id/edit", (req, res, next) => {
+  const { id } = req.params;
+
+  User.findById(id)
+    .then((user) => res.render("users/user-edit", user))
+    .catch((err) => next(err));
+});
+
+router.post(
+  "/userProfile/:id/edit",
+  fileUploader.single("image"),
+  (req, res, next) => {
+    const { id } = req.params;
+    const { username, email } = req.body;
+
+    let imageUrl;
+    if (req.file) {
+      imageUrl = req.file.path;
+    } else {
+      imageUrl = req.body.existingImage;
+    }
+
+    User.findByIdAndUpdate(id, { username, email, imageUrl }, { new: true })
+      .then(() => res.redirect("/userProfile"))
+      .catch((err) => next(err));
+  }
+);
 
 // Lougout route
 router.get("/logout", (req, res, next) => {

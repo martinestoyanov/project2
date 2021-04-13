@@ -1,9 +1,24 @@
-<h1>Welcome to the Japanimation Station!</h1>
-
-<img src="https://static.wikia.nocookie.net/d4e1761a-dc9d-4c11-a095-41a0e7c15657" alt="Celebrating Goku">
+<h1>{{title}}</h1>
 
 {{#if user}}
-
 <h2>If you're seeing this, then {{user.username}} is currently logged in!</h2>
-
+<img src="https://static.wikia.nocookie.net/d4e1761a-dc9d-4c11-a095-41a0e7c15657" alt="Celebrating Goku">
 {{/if}}
+
+<div>
+
+  {{#each top10}}
+  <div>
+    <br>{{@key}}
+    <div>
+      <br>{{#each this}}
+      <p>{{this.title}}</p>
+      {{!-- <img src="{{this.image_url}}" alt=""> --}}
+      {{/each}}
+    </div>
+
+  </div>
+  {{/each}}
+
+
+</div>

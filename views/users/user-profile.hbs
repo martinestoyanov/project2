@@ -1,16 +1,56 @@
-<p>{{#if user}}
-  Hi {{user.username}}! Welcome to your profile page!
-  {{else}}Sorry, stranger. You must be logged in.
+<h1>Your Profile Page</h1>
+
+<hr><br>
+
+<div>
+
+  {{#if user}}
+
+  <div>
+
+    <img src="{{user.imageUrl}}" alt="Profile picture" style="width: 200px;"><br>
+
+    <div>
+
+      <h3>{{user.username}}</h3><br>
+
+      <p>{{user.email}}</p><br>
+
+      <p>Member since: {{user.createdAt}}</p><br>
+
+      <p>Number of animes reviewed: <a href="review link">some number</a></p><br>
+
+      <a href="/userProfile/{{user._id}}/edit" class="btn btn-primary">Edit</a>
+
+    </div>
+
+    <br>
+
+    <img src="https://64.media.tumblr.com/404421fddab40e4853ae802a58de1ee4/tumblr_nlk442HDAR1rbtyq6o1_500.gifv"
+      alt="Luffy fist pumping">
+
+  </div>
+
+  {{else}}
+
+  <p>Sorry, stranger. You must be logged in.</p>
+
+  <img src="https://media0.giphy.com/media/wzWxTUiXRQDYc/200.gif" alt="Luffy picking nose">
+
   {{/if}}
-</p>
 
-<p>{{user.username}}</p>
-<p>{{user.email}}</p>
-<p>{{user.passwordHash}}</p>
+</div>
 
-{{#if user}}
-<img src="https://64.media.tumblr.com/404421fddab40e4853ae802a58de1ee4/tumblr_nlk442HDAR1rbtyq6o1_500.gifv"
-  alt="Luffy fist pumping">
-{{else}}
-<img src="https://media0.giphy.com/media/wzWxTUiXRQDYc/200.gif" alt="Luffy picking nose">
-{{/if}}
+<br><br><br>
+
+<div>
+
+  <h2>Recently Reviewed Animes</h2>
+
+  <hr><br>
+
+  <p>Display of 3 most recent reviews</p><br>
+
+  <a href="link to all user reviews">See all</a>
+
+</div>
