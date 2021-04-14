@@ -13,14 +13,14 @@
       <input type="text" name="animeTitle" />
     </p>
 
-     <!-- DESCRIPTION -->
+    <!-- DESCRIPTION -->
     <p>
       <label for="description-text">Description</label><br>
       <textarea id="description-text" name="description" rows="10" /></textarea>
     </p>
   </fieldset>
 
-  {{!-- <select name="score" id=""> 
+  {{!-- <select name="score" id="">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -32,13 +32,16 @@
     <option value="9">9</option>
     <option value="10">10</option>
   </select> --}}
-  
+
   <!-- BUTTON -->
   <p>
     <button type="submit">Save Review</button>
   </p>
-  <p>
-    <button type="cancel" onclick="/">Cancel</button>
-  </p>
 
+</form>
+
+<form action="/reviews" method="get">
+  <p>
+    <button type="submit"> Cancel</button>
+  </p>
 </form>
