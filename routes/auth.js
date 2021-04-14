@@ -134,7 +134,10 @@ router.post(
     }
 
     User.findByIdAndUpdate(id, { username, email, imageUrl }, { new: true })
-      .then(() => res.redirect("/userProfile"))
+      .then((user) => {
+        req.session.user = user;
+        res.redirect("/userProfile");
+      })
       .catch((err) => next(err));
   }
 );
