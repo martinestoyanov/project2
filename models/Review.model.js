@@ -1,14 +1,14 @@
 const { Schema, model } = require("mongoose");
 
-const reviewSchema = new Schema(
-  {
-    title: String,
-    description: String,
-    animeTitle: String,
-    score: Number,
+const reviewSchema = new Schema({
+  title: String,
+  description: String,
+  animeTitle: String,
+  score: Number,
+  author: { type: Schema.Types.ObjectId, ref: "User" },
   //   review: {
   //     type: String,
-    
+
   //   },
   //   score: {
   //     type     : Number,
@@ -32,9 +32,7 @@ const reviewSchema = new Schema(
   //     ref: 'Anime',
   //     required: [true, 'Review must belong to a anime']
   //   }
-  },
-  
-);
+});
 
 const Review = model("Review", reviewSchema);
 

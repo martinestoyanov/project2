@@ -2,15 +2,23 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const animeSchema = new Schema({
-  
   title: String,
 
   image_url: String,
 
   genre: {
     type: String,
-    enum: ["Action", "Adventure", "Comedy", "Fantasy", "Magic", "Mystery", "Shounen", "unknown"],
-    default: "unknown"
+    enum: [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Fantasy",
+      "Magic",
+      "Mystery",
+      "Shounen",
+      "unknown",
+    ],
+    default: "unknown",
   },
 
   sypnopsis: {
@@ -28,6 +36,7 @@ const animeSchema = new Schema({
 
   rated: Number,
 
-  });
+  author: { type: Schema.Types.ObjectId, ref: "User" },
+});
 
 module.exports = model("Anime", animeSchema);
