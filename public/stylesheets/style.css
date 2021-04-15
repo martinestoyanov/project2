@@ -10,6 +10,8 @@
 body{
   background: #f2f2f2;
 }
+
+/* Navbar */
 nav{
   background: #171c24;
   display: flex;
@@ -235,4 +237,45 @@ nav .logo.space{
 }
 .content .space{
   margin: 10px 0;
+}
+
+/* devDetails */
+.anime-header {
+  display: flex;
+  width: 100%;
+  height: 75vh;
+}
+
+/* .anime-background-video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.anime-video {
+  object-fit: cover;
+  width: 100%;
+  height: 83%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -100;
+}
+
+.anime-display {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.anime-image {
+  border: 2px solid red;
+}
+
+.anime-title {
+  color: white;
+  margin-bottom: -20px;
+  padding-left: 1rem;
 }
