@@ -8,7 +8,9 @@
 
   <div>
 
-    <img src="{{user.imageUrl}}" alt="Profile picture" style="width: 200px;"><br>
+    <img src="{{user.imageUrl}}" alt="Profile picture" style="width: 200px;">
+    
+    <a href="/userProfile/{{user._id}}/edit" class="btn btn-primary">Edit</a><br>
 
     <div>
 
@@ -19,8 +21,6 @@
       <p>Member since: {{user.createdAt}}</p><br>
 
       <p>Number of animes reviewed: <a href="review link">some number</a></p><br>
-
-      <a href="/userProfile/{{user._id}}/edit" class="btn btn-primary">Edit</a>
 
     </div>
 

@@ -44,7 +44,7 @@ router.post("/signup", fileUploader.single("image"), (req, res) => {
         username,
         email,
         passwordHash: hashedPassword,
-        imageUrl: req.file.path,
+        // imageUrl: req.file.path,
       });
     })
     .then((userFromDB) => {

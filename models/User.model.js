@@ -19,7 +19,11 @@ const userSchema = new Schema(
       required: true,
       match: [/(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{8,128}/],
     },
-    imageUrl: String,
+    imageUrl: {
+      type: String,
+      default:
+        "https://cdn11.bigcommerce.com/s-h28kc1m5v1/images/stencil/1280x1280/products/1598/9367/goku_head_dragon_ball_z__45827.1603471213.jpg?c=2",
+    },
   },
   {
     timestamps: true,
