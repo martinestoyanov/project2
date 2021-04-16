@@ -18,6 +18,11 @@
       <label for="description-text">Description</label><br>
       <textarea id="description-text" name="description" rows="10" /></textarea>
     </p>
+    <!-- User Info -->
+    {{#if user}}
+    <input hidden type="text" value="{{user._id}}" name="author">
+    {{/if}}
+
   </fieldset>
 
   {{!-- <select name="score" id="">

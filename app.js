@@ -68,6 +68,7 @@ app.get("/reviews/new", (req, res) => {
 
 // CREATE
 app.post("/reviews", (req, res) => {
+  console.log(req.body);
   Review.create(req.body)
     .then((review) => {
       console.log(review);
