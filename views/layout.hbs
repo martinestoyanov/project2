@@ -17,11 +17,15 @@
       <div class="nav-items">
          <li><a href="/">Home</a></li>
          <li><a href="/dev/">Dev</a></li>
+         <li><a href="/reviews">Reviews</a></li>
+         {{#unless user}}
          <li><a href="/signup">Signup</a></li>
          <li><a href="/login">Login</a></li>
+         {{/unless}}
+         {{#if user}}
          <li><a href="/userProfile">Profile Page</a></li>
          <li><a href="/logout">Logout</a></li>
-         <li><a href="/reviews">Reviews</a></li>
+         {{/if}}
       </div>
       <div class="search-icon"><span class="fas fa-search"></span></div>
       <div class="cancel-icon"><span class="fas fa-times"></span></div>
