@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+
+:root {
+  --colorLight: hsl(197, 69%, 60%);
+  --colorMain: hsl(197, 69%, 30%);
+  --colorDark: hsl(197, 69%, 10%);
+
+  --neutralLight: hsl(180, 6%, 88%);
+  --neutralDark: hsl(180, 6%, 5%);
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -8,12 +18,12 @@
   /* Can change font-family to whatever the team would like. */
 }
 body{
-  background: #f2f2f2;
+  background: var(--neutralLight);
 }
 
 /* Navbar */
 nav{
-  background: #171c24;
+  background: var(--colorDark);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -22,7 +32,7 @@ nav{
   padding: 0 100px;
 }
 nav .logo{
-  color: #fff;
+  color: var(--colorLight);
   font-size: 30px;
   font-weight: 600;
   letter-spacing: -1px;
@@ -37,28 +47,28 @@ nav .nav-items li{
   padding: 0 15px;
 }
 nav .nav-items li a{
-  color: #fff;
+  color: var(--colorMain);
   font-size: 18px;
   font-weight: 500;
   text-decoration: none;
 }
 nav .nav-items li a:hover{
-  color: #ff3d00;
+  color: var(--colorLight);
 }
 nav form{
   display: flex;
   height: 40px;
   padding: 2px;
-  background: #1e232b;
+  background: var(--neutralDark);
   min-width: 18%!important;
   border-radius: 2px;
-  border: 1px solid rgba(155,155,155,0.2);
+  border: 1px solid var(--colorLight);
 }
 nav form .search-data{
   width: 100%;
   height: 100%;
   padding: 0 10px;
-  color: #fff;
+  color: var(--neutralDark);
   font-size: 17px;
   border: none;
   font-weight: 500;
@@ -66,15 +76,15 @@ nav form .search-data{
 }
 nav form button{
   padding: 0 15px;
-  color: #fff;
+  color: var(--neutralLight);
   font-size: 17px;
-  background: #ff3d00;
+  background: var(--colorMain);
   border: none;
   border-radius: 2px;
   cursor: pointer;
 }
 nav form button:hover{
-  background: #e63600;
+  background: var(--colorLight);
 }
 nav .menu-icon,
 nav .cancel-icon,
@@ -83,7 +93,7 @@ nav .search-icon{
   text-align: center;
   margin: 0 50px;
   font-size: 18px;
-  color: #fff;
+  color: var(--neutralLight);
   cursor: pointer;
   display: none;
 }
@@ -114,7 +124,7 @@ nav .search-icon{
     height: 100%;
     padding: 10px 50px 0 50px;
     text-align: center;
-    background: #14181f;
+    background: var(--neutralDark);
     display: inline-block;
     transition: left 0.3s ease;
   }
@@ -150,7 +160,7 @@ nav .search-icon{
     height: 0;
     z-index: -1;
     border: 10px solid transparent;
-    border-bottom-color: #1e232b;
+    border-bottom-color: var(--colorDark);
     margin: -20px 0 0;
   }
   nav form:after{
@@ -158,7 +168,7 @@ nav .search-icon{
     content: '';
     height: 60px;
     padding: 2px;
-    background: #1e232b;
+    background: var(--colorDark);
     border-radius: 2px;
     min-width: calc(100% + 20px);
     z-index: -2;
@@ -200,7 +210,7 @@ nav .search-icon{
   margin: 10px 0;
 }
 nav .logo.space{
-  color: red;
+  color: var(--colorMain);
   padding: 0 5px 0 0;
 }
 @media (max-width: 980px){
@@ -246,12 +256,6 @@ nav .logo.space{
   height: 75vh;
 }
 
-/* .anime-background-video {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
 .anime-video {
   object-fit: cover;
   width: 100%;
@@ -271,11 +275,11 @@ nav .logo.space{
 }
 
 .anime-image {
-  border: 2px solid red;
+  border: 3px solid var(--colorMain);
 }
 
 .anime-title {
-  color: white;
+  color: var(--colorMain);
   margin-bottom: -20px;
   padding-left: 1rem;
 }
@@ -327,21 +331,24 @@ body {
   left: 0;
   width: 100%;
   height: 5rem;
-  background-color: #1e232b;
+  background-color: var(--colorDark);
   margin-bottom: -10em;
 }
 
 .footer-link {
-  color: white;
-  text-align: center;
-  text-decoration: none;
   font-size: 1.5rem;
   padding-top: 3vh;
 }
 
 .footer-link a {
+  color: var(--colorMain);
+  text-align: center;
   text-decoration: none;
-  color: white;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.footer-link a:hover {
+  color: var(--colorLight);
+  cursor: pointer;
 }
