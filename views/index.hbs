@@ -13,8 +13,8 @@
     <div class="anime-card">
       <br>{{#each this}}
       <div class="anime-card-info">
+        <a href="/dev/detailsGet/{{mal_id}}"><img src="{{this.image_url}}" alt="" class="anime-card-image"></a>
         <p><a href="/dev/detailsGet/{{mal_id}}">{{title}}</a></p>
-        <img src="{{this.image_url}}" alt="" class="anime-card-image">
       </div>
       {{/each}}
     </div>
