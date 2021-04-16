@@ -63,7 +63,6 @@ const top = async (req, res, next) => {
   next();
 };
 
-//WIP to try to query multiple searches based on genre and sort by rating.
 const topAll = async (req, res, next) => {
   console.log("topAll Begin");
   req.top10all = {};
@@ -80,49 +79,21 @@ const topAll = async (req, res, next) => {
     api
       .get(getUrl)
       .then((result) => {
-        // req.top10all[genreMapKeys[index]].data.results = result
-        console.log(
-          result.data.results[0].mal_id,
-          result.data.results[1].mal_id,
-          result.data.results[2].mal_id,
-          result.data.results[25].mal_id
-        );
+        req.top10all[genreMapKeys[index]] = result.data.results;
       })
       .catch((err) => {
         console.log(err);
       });
-    // console.log(req.top10all);
     index++;
     if (index >= genreMapKeys.length) {
       clearInterval(intervalID);
+      next();
     }
   }, 2000);
-  // while (index < genreMapKeys.length) {
 
-  // for (let [genre, number] of Object.entries(genreMap)) {
-
-  // let getLoop = async function () {
-  //   let getUrl =
-  //     "/search/anime?q=&page=1?genre=" + number + "&order_by=score&sort=desc";
-  //   console.log(getUrl);
-
-  // api
-  //   .get(getUrl)
-  //   .then((result) => {
-  //     req.top10all[genre] = result.data.results;
-  // console.log(req.top10all);
-  // console.log(req.top10all[genre].data.results.length);
-  // console.log("Loop Done");
-  // })
-  // .catch((error) => {
-  // req.result = error;
-  // });
-  // console.log(req.)
-  // getLoop();
-
-  next();
+  // next();
 };
-// req.top10all = top10eachobj;
+
 module.exports.topAll = topAll;
 module.exports.search = search;
 module.exports.details = details;
