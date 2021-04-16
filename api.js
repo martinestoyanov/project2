@@ -65,31 +65,58 @@ const top = async (req, res, next) => {
 
 //WIP to try to query multiple searches based on genre and sort by rating.
 const topAll = async (req, res, next) => {
+  console.log("topAll Begin");
   req.top10all = {};
-  for (let [genre, number] of Object.entries(genreMap)) {
+  let genreMapKeys = Object.keys(genreMap);
+  let index = 0;
+
+  const intervalID = setInterval(() => {
     let getUrl =
-      "/search/anime?q=&page=1?genre=" + number + "&order_by=score&sort=desc";
-    req.top10all[genre] = api.get(getUrl).catch((err) => {
-      console.log(err);
-    });
+      "/search/anime?q=&page=1&genre=" +
+      genreMap[genreMapKeys[index]] +
+      "&order_by=score&sort=desc";
+    console.log(getUrl);
 
-    // let getLoop = async function () {
-    //   let getUrl =
-    //     "/search/anime?q=&page=1?genre=" + number + "&order_by=score&sort=desc";
-    //   console.log(getUrl);
-
-    // api
-    //   .get(getUrl)
-    //   .then((result) => {
-    //     req.top10all[genre] = result.data.results;
+    api
+      .get(getUrl)
+      .then((result) => {
+        // req.top10all[genreMapKeys[index]].data.results = result
+        console.log(
+          result.data.results[0].mal_id,
+          result.data.results[1].mal_id,
+          result.data.results[2].mal_id,
+          result.data.results[25].mal_id
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // console.log(req.top10all);
-    // console.log(req.top10all[genre].data.results.length);
-    // console.log("Loop Done");
-    // })
-    // .catch((error) => {
-    // req.result = error;
-    // });
-  }
+    index++;
+    if (index >= genreMapKeys.length) {
+      clearInterval(intervalID);
+    }
+  }, 2000);
+  // while (index < genreMapKeys.length) {
+
+  // for (let [genre, number] of Object.entries(genreMap)) {
+
+  // let getLoop = async function () {
+  //   let getUrl =
+  //     "/search/anime?q=&page=1?genre=" + number + "&order_by=score&sort=desc";
+  //   console.log(getUrl);
+
+  // api
+  //   .get(getUrl)
+  //   .then((result) => {
+  //     req.top10all[genre] = result.data.results;
+  // console.log(req.top10all);
+  // console.log(req.top10all[genre].data.results.length);
+  // console.log("Loop Done");
+  // })
+  // .catch((error) => {
+  // req.result = error;
+  // });
   // console.log(req.)
   // getLoop();
 
