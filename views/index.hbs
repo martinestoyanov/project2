@@ -5,22 +5,24 @@
 <img src="https://static.wikia.nocookie.net/d4e1761a-dc9d-4c11-a095-41a0e7c15657" alt="Celebrating Goku">
 {{/if}}
 
-<div>
+<br><br>
 
+<div>
   {{#each top10}}
   <div class="anime-key">
-    <br>{{@key}}
-    <div class="anime-card">
-      <br>{{#each this}}
-      <div class="anime-card-info">
-        <a href="/dev/detailsGet/{{mal_id}}"><img src="{{this.image_url}}" alt="" class="anime-card-image"></a>
-        <p><a href="/dev/detailsGet/{{mal_id}}">{{title}}</a></p>
+    <br>
+    <h3>{{@key}}</h3>
+  </div>
+  <br>
+  <div class="anime-card">
+    <br>{{#each this}}
+    <div class="anime-card-info">
+      <a href="/dev/detailsGet/{{mal_id}}"><img src="{{this.image_url}}" alt="" class="anime-card-image"></a>
+      <div class="anime-card-title">
+        <p><a href="/dev/detailsGet/{{mal_id}}">{{this.title}}</a></p>
       </div>
-      {{/each}}
     </div>
-
+    {{/each}}
   </div>
   {{/each}}
-
-
 </div>

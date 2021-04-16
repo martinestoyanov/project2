@@ -1,6 +1,11 @@
 <div class="anime-header">
   {{!-- <div class="anime-background-video"> --}}
+    {{#if this.trailer_url}}
     <iframe class="anime-video" autoplay src="{{this.trailer_url}}&mute=1"></iframe>
+    {{else}}
+    <img class="anime-video" src="{{this.image_url}}" alt="No video to show">
+    {{/if}}
+
     {{!--
   </div> --}}
   <div class="anime-display">

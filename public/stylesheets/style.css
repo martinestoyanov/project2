@@ -285,22 +285,31 @@ nav .logo.space{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .anime-card-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding: 0 0.5vw;
 }
 
 .anime-card-image {
-  width: 200px;
-  height: 250px;
+  width: 250px;
+  height: 300px;
+}
+
+.anime-card-title {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column wrap;
   padding-top: 1vh;
-  margin-bottom: 1vh;
+  margin-bottom: 1.5vh;
+  width: 250px;
+  text-align: center;
 }
 
 body {
