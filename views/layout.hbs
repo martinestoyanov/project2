@@ -11,42 +11,47 @@
 </head>
 
 <body>
-   <nav>
-      <div class="menu-icon"><span class="fas fa-bars"></span></div>
-      <div class="logo">AɳιɱαƚισɳSƚαƚισɳ</div>
-      <div class="nav-items">
-         <li><a href="/">Home</a></li>
-         <li><a href="/dev/">Dev</a></li>
-         <li><a href="/reviews">Reviews</a></li>
-         {{#unless user}}
-         <li><a href="/signup">Signup</a></li>
-         <li><a href="/login">Login</a></li>
-         {{/unless}}
-         {{#if user}}
-         <li><a href="/userProfile">Profile Page</a></li>
-         <li><a href="/logout">Logout</a></li>
-         {{/if}}
-      </div>
-      <div class="search-icon"><span class="fas fa-search"></span></div>
-      <div class="cancel-icon"><span class="fas fa-times"></span></div>
-      <form action="/dev/search" method="post">
-         <input type="search" name="search" class="search-data" placeholder="Search Animes" required>
-         <button type="submit" class="fas fa-search"></button>
-      </form>
-   </nav>
+   <div class="page-wrap">
+      <nav>
+         <div class="menu-icon"><span class="fas fa-bars"></span></div>
+         <div class="logo">AɳιɱαƚισɳSƚαƚισɳ</div>
+         <div class="nav-items">
+            <li><a href="/">Home</a></li>
+            <li><a href="/dev/">Dev</a></li>
+            <li><a href="/reviews">Reviews</a></li>
+            {{#unless user}}
+            <li><a href="/signup">Signup</a></li>
+            <li><a href="/login">Login</a></li>
+            {{/unless}}
+            {{#if user}}
+            <li><a href="/userProfile">Profile Page</a></li>
+            <li><a href="/logout">Logout</a></li>
+            {{/if}}
+         </div>
+         <div class="search-icon"><span class="fas fa-search"></span></div>
+         <div class="cancel-icon"><span class="fas fa-times"></span></div>
+         <form action="/dev/search" method="post">
+            <input type="search" name="search" class="search-data" placeholder="Search Animes" required>
+            <button type="submit" class="fas fa-search"></button>
+         </form>
+      </nav>
 
-   {{{body}}}
-
-   <footer class="footer">
-      <div class="footer-link">
-         <a href="">About</a> |
-         <a href="">Feedback</a> |
-         <a href="https://www.facebook.com/IronhackMIA/"><i class="fab fa-facebook-square"></i></a> |
-         <a href="https://www.linkedin.com/showcase/ironhack-miami/"><i class="fab fa-linkedin"></i></a> |
-         <a href="https://www.instagram.com/ironhackmia/?hl=en"><i class="fab fa-instagram"></i></a> |
-         <a href="https://twitter.com/ironhackmia?lang=en"><i class="fab fa-twitter-square"></i></a>
+      <div class="main">
+         {{{body}}}
       </div>
-   </footer>
+
+      <footer class="footer">
+         <div class="footer-link">
+            <a href="">About</a> |
+            <a href="">Feedback</a> |
+            <a href="https://www.facebook.com/IronhackMIA/"><i class="fab fa-facebook-square"></i></a> |
+            <a href="https://www.linkedin.com/showcase/ironhack-miami/"><i class="fab fa-linkedin"></i></a> |
+            <a href="https://www.instagram.com/ironhackmia/?hl=en"><i class="fab fa-instagram"></i></a> |
+            <a href="https://twitter.com/ironhackmia?lang=en"><i class="fab fa-twitter-square"></i></a>
+         </div>
+      </footer>
+   </div>
+
 
    <script src="/js/navbar.js"></script>
    <script src="/js/script.js"></script>

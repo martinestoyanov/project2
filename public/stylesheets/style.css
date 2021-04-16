@@ -17,8 +17,22 @@
   font-family: 'Montserrat', sans-serif;
   /* Can change font-family to whatever the team would like. */
 }
-body{
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background: var(--neutralLight);
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex-grow: 1;
 }
 
 h1, h2, h3, h4, h5 {
@@ -34,6 +48,7 @@ nav{
   justify-content: space-between;
   height: 70px;
   padding: 0 100px;
+  z-index: 100;
 }
 nav .logo{
   color: var(--colorLight);
@@ -267,7 +282,6 @@ nav .logo.space{
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -100;
 }
 
 .anime-display {
@@ -279,7 +293,9 @@ nav .logo.space{
 }
 
 .anime-image {
-  border: 3px solid var(--colorMain);
+  border: 2px solid var(--colorMain);
+  padding: 0;
+  margin: 0;
 }
 
 .anime-title {
@@ -320,28 +336,21 @@ nav .logo.space{
   text-align: center;
 }
 
-body {
-  /* position: relative; */
-  min-height: 100vh;
-  padding-bottom: 7rem;
-}
-
 /* Footer */
 .footer {
-  display: flex;
-  justify-self: flex-end;
+  position: relative;
   justify-content: center;
+  text-align: center;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 5rem;
+  height: 70px;
   background-color: var(--colorDark);
-  margin-bottom: -10em;
 }
 
 .footer-link {
   font-size: 1.5rem;
-  padding-top: 3vh;
+  padding-top: 2vh;
 }
 
 .footer-link a {
