@@ -10,4 +10,9 @@ router.get("/", api.topAll, (req, res, next) => {
     top10: req.top10all,
   });
 });
+
+router.get("/about", (req, res, next) => {
+  res.render("./extras/about");
+});
+
 module.exports = router;
