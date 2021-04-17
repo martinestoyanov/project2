@@ -47,7 +47,14 @@
 
   <h2>Recently Reviewed Animes</h2>
 
-  <hr><br>
+  {{#each user.reviews.[0]}}
+   <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
+  <small>{{this.animeTitle}}</small>
+  <p>Reviewed: {{this.createdAt}}</p><br>
+  
+{{/each}}
+
+<hr><br>
 
   <p>Display of 3 most recent reviews</p><br>
 

@@ -9,6 +9,7 @@ const User = require("../models/User.model");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const fileUploader = require("../config/cloudinary.config");
+const Review = require("../models/Review.model");
 
 // Signup Routes
 
@@ -103,11 +104,21 @@ router.post("/login", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-router.get("/userProfile", (req, res, next) => {
+router.get("/userProfile", async (req, res, next) => {
   // const { username } = req.params;
   // res.send(req.session);
   // res.render("users/user-profile", { user: req.session && req.session.userFromDB });
-  res.render("users/user-profile", req.session);
+  console.log(req.session.user.reviews.populate);
+  const user = await User.findById(req.session.user._id) 
+  const userIdString = req.session.user._id
+  const actualUserId = mongoose.Types.ObjectId(userIdString)
+
+  const reviews = await Review.find ({author: actualUserId});
+    console.log(reviews)
+    res.render("users/user-profile", {user: user , reviews: reviews});
+
+
+  
 });
 
 // Edit routes

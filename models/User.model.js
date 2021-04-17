@@ -24,7 +24,7 @@ const userSchema = new Schema(
       default:
         "https://cdn11.bigcommerce.com/s-h28kc1m5v1/images/stencil/1280x1280/products/1598/9367/goku_head_dragon_ball_z__45827.1603471213.jpg?c=2",
     },
-    reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
+    
     animes: [{ type: Schema.Types.ObjectId, ref: "Anime" }],
   },
   {

@@ -1,8 +1,11 @@
 <a href="/reviews">Back to Reviews</a>
 
 <h1>{{review.title}}</h1>
+<h2>{{user.username}}</h2>
 <h2>{{review.animeTitle}}</h2>
 <p>{{review.description}}</p>
+<p>AnimationStation's Score: {{this.score}}</p>
+<p>Reviewed: {{this.createdAt}}</p><br>
 
 <p><a href="/reviews/{{review._id}}/edit">Edit</a></p>
 

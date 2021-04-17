@@ -3,7 +3,11 @@
 <a href="/reviews/new">New Review</a>
 
 {{#each reviews}}
-   <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
-  <small>{{this.animeTitle}}</small>
+   <h2>Review title: <a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
+  <h3>{{this.animeTitle}}</h3>
+   <p>{{this.description}}</p>
+   <p>AnimationStation's Score: {{this.score}}</p>
+  <p>Reviewed: {{this.createdAt}}</p><br>
+
   
 {{/each}}
