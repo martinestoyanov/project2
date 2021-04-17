@@ -15,4 +15,8 @@ router.get("/about", (req, res, next) => {
   res.render("./extras/about");
 });
 
+router.get("/feedback", (req, res, next) => {
+  res.render("./extras/feedback");
+});
+
 module.exports = router;

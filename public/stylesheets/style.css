@@ -336,8 +336,9 @@ nav .logo.space{
   text-align: center;
 }
 
-/* About page */
-.about {
+/* About/Feedback page */
+.about,
+.feedback {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -352,18 +353,27 @@ nav .logo.space{
 
 .about-creators li {
   text-decoration: none;
+  list-style-type: none;
   color: var(--neutralDark);
   padding-top: 1vh;
+  text-align: center;
 }
 
-.about-thank-you {
+.about-thank-you,
+.feedback-info {
   padding-top: 3vh;
   color: var(--neutralDark);
-  margin: 0 30%;
+  margin: 0 25%;
   display: flex;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   flex-flow: wrap;
   line-height: 1.5em;
+}
+
+.feedback-email {
+  padding-top: 3vh;
 }
 
 /* Footer */
