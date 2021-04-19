@@ -9,7 +9,7 @@
   <div>
 
     <img src="{{user.imageUrl}}" alt="Profile picture" style="width: 200px;">
-    
+
     <a href="/userProfile/{{user._id}}/edit" class="btn btn-primary">Edit</a><br>
 
     <div>
@@ -18,7 +18,7 @@
 
       <p>{{user.email}}</p><br>
 
-      <p>Member since: {{user.createdAt}}</p><br>
+      <p>Member since: {{dateFormat user.createdAt "MMMM Do, YYYY"}}</p><br>
 
       <p>Number of animes reviewed: <a href="review link">some number</a></p><br>
 
@@ -48,13 +48,13 @@
   <h2>Recently Reviewed Animes</h2>
 
   {{#each user.reviews.[0]}}
-   <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
+  <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
   <small>{{this.animeTitle}}</small>
   <p>Reviewed: {{this.createdAt}}</p><br>
-  
-{{/each}}
 
-<hr><br>
+  {{/each}}
+
+  <hr><br>
 
   <p>Display of 3 most recent reviews</p><br>
 

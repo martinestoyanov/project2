@@ -10,6 +10,7 @@ const app = express();
 //Middleware Config
 require("./config")(app);
 require("./config/session.config")(app);
+hbs.registerHelper("dateFormat", require("handlebars-dateformat"));
 
 //hbs Helpers
 // hbs.registerHelper("homeSearch", function (reqgenre) {
