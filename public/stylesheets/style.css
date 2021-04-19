@@ -268,6 +268,51 @@ nav .logo.space{
   margin: 10px 0;
 }
 
+/* Profile Page */
+.profile-head {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2vh 0;
+  margin: 0 10vw;
+}
+
+.profile-head img,
+.profile-gif img {
+  border-radius: 25px;
+  border: solid 2px var(--colorMain);
+}
+
+.profile-pic img {
+  width: 250px;
+  height: 300px;
+}
+
+.profile-pic a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--colorMain);
+}
+
+.profile-pic a:hover {
+  color: var(--colorLight);
+}
+
+.profile-info p {
+  font-size: 1.5em;
+}
+
+.profile-info span {
+  color: var(--colorMain);
+}
+
+.profile-gif {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 /* devDetails */
 .anime-header {
   display: flex;
@@ -296,12 +341,19 @@ nav .logo.space{
   border: 2px solid var(--colorMain);
   padding: 0;
   margin: 0;
+  display: flex;
+  position: flex-end;
 }
 
 .anime-title {
   color: var(--colorMain);
   margin-bottom: -20px;
   padding-left: 1rem;
+  text-shadow:
+		-1px -1px 0 var(--neutralDark),
+		1px -1px 0 var(--neutralDark),
+		-1px 1px 0 var(--neutralDark),
+		1px 1px 0 var(--neutralDark);
 }
 
 /* Sidescrolling list */

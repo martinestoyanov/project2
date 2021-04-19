@@ -1,63 +1,56 @@
-<h1>Your Profile Page</h1>
-
-<hr><br>
-
 <div>
 
   {{#if user}}
 
-  <div>
+  <h1>Welcome to {{user.username}}'s Profile Page</h1>
 
-    <img src="{{user.imageUrl}}" alt="Profile picture" style="width: 200px;">
+  <div class="profile-head">
 
-    <a href="/userProfile/{{user._id}}/edit" class="btn btn-primary">Edit</a><br>
-
-    <div>
-
-      <h3>{{user.username}}</h3><br>
-
-      <p>{{user.email}}</p><br>
-
-      <p>Member since: {{dateFormat user.createdAt "MMMM Do, YYYY"}}</p><br>
-
-      <p>Number of animes reviewed: <a href="review link">some number</a></p><br>
-
+    <div class="profile-pic">
+      <img src="{{user.imageUrl}}" alt="Profile picture">
+      <a href="/userProfile/{{user._id}}/edit" class="btn btn-primary">Edit</a>
     </div>
 
-    <br>
+    <div class="profile-info">
+      <p><span><i>{{user.username}}'s email: </i></span>{{user.email}}</p><br>
+      <p><span><i>Member since: </i></span>{{dateFormat user.createdAt "MMMM Do, YYYY"}}</p><br>
+      <p><span><i>Total animes reviewed: </i></span><a href="review link">some number</a></p><br>
+    </div>
 
+  </div>
+
+  <div class="profile-gif">
+    <h2>You Rock!!!</h2>
     <img src="https://64.media.tumblr.com/404421fddab40e4853ae802a58de1ee4/tumblr_nlk442HDAR1rbtyq6o1_500.gifv"
       alt="Luffy fist pumping">
+  </div>
+
+  <br><br><br>
+
+  <div>
+
+    <h2>Recently Reviewed Animes</h2>
+
+    {{#each user.reviews.[0]}}
+    <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
+    <small>{{this.animeTitle}}</small>
+    <p>Reviewed: {{this.createdAt}}</p><br>
+
+    {{/each}}
+
+    <hr><br>
+
+    <p>Display of 3 most recent reviews</p><br>
+
+    <a href="link to all user reviews">See all</a>
 
   </div>
 
   {{else}}
 
   <p>Sorry, stranger. You must be logged in.</p>
-
   <img src="https://media0.giphy.com/media/wzWxTUiXRQDYc/200.gif" alt="Luffy picking nose">
 
   {{/if}}
-
-</div>
-
-<br><br><br>
-
-<div>
-
-  <h2>Recently Reviewed Animes</h2>
-
-  {{#each user.reviews.[0]}}
-  <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
-  <small>{{this.animeTitle}}</small>
-  <p>Reviewed: {{this.createdAt}}</p><br>
-
-  {{/each}}
-
-  <hr><br>
-
-  <p>Display of 3 most recent reviews</p><br>
-
-  <a href="link to all user reviews">See all</a>
 
 </div>
