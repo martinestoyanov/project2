@@ -37,6 +37,16 @@ body {
 
 h1, h2, h3, h4, h5 {
   color: var(--colorMain);
+  text-shadow:
+  -1px -1px 0 var(--neutralDark),
+  1px -1px 0 var(--neutralDark),
+  -1px 1px 0 var(--neutralDark),
+  1px 1px 0 var(--neutralDark);
+}
+
+img {
+  border-radius: 25px;
+  border: solid 2px var(--colorMain);
 }
 
 /* Navbar */
@@ -268,6 +278,11 @@ nav .logo.space{
   margin: 10px 0;
 }
 
+/* Home Page */
+.anime-key {
+  text-transform: capitalize;
+}
+
 /* Profile Page */
 .profile-head {
   display: flex;
@@ -277,14 +292,13 @@ nav .logo.space{
   margin: 0 20vw;
 }
 
-.profile-head img,
+/* .profile-head img,
 .profile-gif img {
   border-radius: 25px;
   border: solid 2px var(--colorMain);
-}
+} */
 
 .profile-pic {
-  
   margin-right: 2vw;
 }
 
@@ -302,10 +316,6 @@ nav .logo.space{
 .profile-pic a:hover {
   color: var(--colorLight);
 }
-
-/* .profile-info {
-  padding: 0 3vw; */
-/* } */
 
 .profile-info p {
   font-size: 1.5em;
@@ -347,7 +357,7 @@ nav .logo.space{
 }
 
 .anime-image {
-  border: 2px solid var(--colorMain);
+  /* border: 2px solid var(--colorMain); */
   padding: 0;
   margin: 0;
   display: flex;
@@ -358,18 +368,14 @@ nav .logo.space{
   color: var(--colorMain);
   margin-bottom: -20px;
   padding-left: 1rem;
-  text-shadow:
-		-1px -1px 0 var(--neutralDark),
-		1px -1px 0 var(--neutralDark),
-		-1px 1px 0 var(--neutralDark),
-		1px 1px 0 var(--neutralDark);
+
 }
 
 /* Sidescrolling list */
 .anime-card {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 
