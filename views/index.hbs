@@ -1,20 +1,20 @@
-<h1>{{title}}</h1>
+<div class="home-head">
+  {{#if user}}
+  <h1>{{user.username}}, welcome to the AɳιɱαƚισɳSƚαƚισɳ!</h1>
+  {{/if}}
+  <img src="https://static.wikia.nocookie.net/d4e1761a-dc9d-4c11-a095-41a0e7c15657" alt="Celebrating Goku">
+</div>
 
-{{#if user}}
-<h2>If you're seeing this, then {{user.username}} is currently logged in!</h2>
-<img src="https://static.wikia.nocookie.net/d4e1761a-dc9d-4c11-a095-41a0e7c15657" alt="Celebrating Goku">
-{{/if}}
-
-<br><br>
-
-<div>
+<div class="home-carousel">
   {{#each top10}}
   <div class="anime-key">
     <br>
-    <h3>{{@key}}</h3>
+    <h2>{{@key}}</h2>
   </div>
   <br>
   <div class="anime-card">
+    <button class="card-btn card-btn-left" onclick=""><i class="fas fa-angle-double-left"></i></button>
+    <button class="card-btn card-btn-right" onclick=""><i class="fas fa-angle-double-right"></i></button>
     <br>{{#each this}}
     <div class="anime-card-info">
       <a href="/dev/detailsGet/{{mal_id}}"><img src="{{this.image_url}}" alt="" class="anime-card-image"></a>

@@ -279,8 +279,104 @@ nav .logo.space{
 }
 
 /* Home Page */
+.home-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.home-head h1,
+.home-head img {
+  margin-top: 1vh;
+}
+
+/* Carousel */
 .anime-key {
   text-transform: capitalize;
+}
+
+.home-carousel {
+  margin: 0 10vw;
+  overflow: hidden;
+}
+
+/* Sidescrolling list */
+.anime-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.anime-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 0.45vw;
+  transition: transform .5s ease;
+}
+
+.anime-card-info:hover {
+  transform: scale(1.2);
+}
+
+.anime-card button{
+  display: block;
+  height: 50px;
+  width: 50px;
+  padding: 0 25px;
+  border: none;
+  border-radius: 100%;
+  background-color: var(--colorMain);
+  transition: transform .5s ease;
+  margin-top: 10vh;
+  z-index: 100;
+}
+
+.card-btn:hover {
+  transform: scale(1.2);
+  background-color: var(--colorLight);
+}
+
+.card-btn:active {
+  transform: scale(1);
+  background-color: var(--colorMain);
+}
+
+.card-btn i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  color: var(--neutralLight);
+}
+
+.card-btn-left {
+  left: 15vw;
+}
+
+.card-btn-right {
+  display: flex;
+  position: absolute;
+  right: 11vw;
+}
+
+.anime-card-image {
+  width: 200px;
+  height: 250px;
+}
+
+.anime-card-title {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column wrap;
+  padding-top: 1vh;
+  margin-bottom: 1.5vh;
+  width: 200px;
+  text-align: center;
 }
 
 /* Profile Page */
@@ -291,12 +387,6 @@ nav .logo.space{
   padding: 2vh 0;
   margin: 0 20vw;
 }
-
-/* .profile-head img,
-.profile-gif img {
-  border-radius: 25px;
-  border: solid 2px var(--colorMain);
-} */
 
 .profile-pic {
   margin-right: 2vw;
@@ -357,7 +447,6 @@ nav .logo.space{
 }
 
 .anime-image {
-  /* border: 2px solid var(--colorMain); */
   padding: 0;
   margin: 0;
   display: flex;
@@ -369,38 +458,6 @@ nav .logo.space{
   margin-bottom: -20px;
   padding-left: 1rem;
 
-}
-
-/* Sidescrolling list */
-.anime-card {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.anime-card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0 0.5vw;
-}
-
-.anime-card-image {
-  width: 250px;
-  height: 300px;
-}
-
-.anime-card-title {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-flow: column wrap;
-  padding-top: 1vh;
-  margin-bottom: 1.5vh;
-  width: 250px;
-  text-align: center;
 }
 
 /* About/Feedback page */
