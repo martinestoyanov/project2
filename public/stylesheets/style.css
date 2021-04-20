@@ -460,6 +460,46 @@ nav .logo.space{
 
 }
 
+/* devShowAll */
+.results {
+  width: 100vw;
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.results-info {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  text-align: center;
+  justify-content: center;
+  padding: 1vh 0.45vw;
+  transition: transform .5s ease;
+}
+
+.results-info:hover {
+  transform: scale(1.2);
+}
+
+.results-info img {
+  width: 200px;
+  height: 250px;
+}
+
+.results-info p {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column wrap;
+  padding-top: 1vh;
+  margin-bottom: 1.5vh;
+  width: 200px;
+  text-align: center;
+}
+
 /* Forms */
 .form {
   display: flex;

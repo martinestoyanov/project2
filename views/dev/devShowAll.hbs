@@ -1,17 +1,7 @@
-DevShowAll view update
-<div style="    
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-flow: row wrap;
-    width: 100vw;">
-
+<h2>Search Results</h2>
+<div class="results">
   {{#each data}}
-  <div style="display: flex;
-               align-items: center;
-                justify-content: center;
-                flex-flow: column wrap;
-                text-align: center">
+  <div class="results-info">
     <p><a href="/dev/detailsGet/{{mal_id}}">{{title}}</a></p>
     <a href="/dev/detailsGet/{{mal_id}}"><img src="{{image_url}}" alt=""></a>
   </div>
