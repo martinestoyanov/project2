@@ -1,4 +1,4 @@
-# JapanimationStation
+# AnimationStation
 
 ## Project by
 
