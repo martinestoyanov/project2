@@ -3,6 +3,7 @@ require("./db");
 const express = require("express");
 const hbs = require("hbs");
 const Review = require("./models/Review.model");
+const Comment = require("./models/Comment.model")
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const app = express();
@@ -62,6 +63,7 @@ app.get("/reviews", (req, res) => {
     });
 });
 
+
 // NEW
 app.get("/reviews/new", (req, res) => {
   res.render("reviews-new", { title: "New Review" });
@@ -120,6 +122,38 @@ app.delete("/reviews/:id", function (req, res) {
       console.log(err.message);
     });
 });
+
+//  // NEW Comment
+//  app.post('/reviews/comments', (req, res) => {
+//   res.send('reviews comment')
+// });
+
+// CREATE Comment
+app.post('/reviews/comments', (req, res) => {
+  Comment.create(req.body).then((comment) => {
+    console.log(comment)
+    res.redirect(`/reviews/${comment.reviewId}`);
+  }).catch((err) => {
+    console.log(err.message);
+  });
+});
+
+// SHOW
+app.get('/reviews/:id', (req, res) => {
+  // find review
+  Review.findById(req.params.id).then(review => {
+    // fetch its comments
+    Comment.find({ reviewId: req.params.id }).then(comments => {
+      // respond with the template with both values
+      res.render('reviews-show', { review: review, comments: comments })
+    })
+  }).catch((err) => {
+    // catch errors
+    console.log(err.message)
+  });
+});
+
+
 
 //Error Handling
 require("./error-handling")(app);

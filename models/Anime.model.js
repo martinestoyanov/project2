@@ -16,10 +16,8 @@ const animeSchema = new Schema({
       "Magic",
       "Mystery",
       "Shounen",
-      "unknown",
-    ],
-    default: "unknown",
-  },
+         ],
+        },
 
   sypnopsis: {
     type: String,
