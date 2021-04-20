@@ -460,6 +460,58 @@ nav .logo.space{
 
 }
 
+/* Forms */
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 75vh;
+}
+
+.form fieldset {
+  padding: 2rem 8rem;
+  border-radius: 25px;
+  color: var(--colorMain);
+  font-size: 1.5em;
+  margin-bottom: 1rem;
+}
+
+.form form {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form label,
+.form input {
+  margin-bottom: 1rem;
+}
+
+.form button {
+  background-color: var(--colorMain);
+  padding: 0.5em 1em;
+  color: var(--neutralLight);
+  font-size: 0.6em;
+}
+
+.review-items {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-evenly;
+}
+
+.review-items div {
+  display: flex;
+  flex-flow: column;
+  padding: 0 1vw;
+}
+
+.review-button {
+  margin-top: 1rem;
+}
+
 /* About/Feedback page */
 .about,
 .feedback {
