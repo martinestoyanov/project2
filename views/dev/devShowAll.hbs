@@ -12,7 +12,13 @@ DevShowAll view update
                 justify-content: center;
                 flex-flow: column wrap;
                 text-align: center">
-    <p><a href="/dev/detailsGet/{{mal_id}}">{{title}}</a></p>
+    <p><a href="/dev/detailsGet/{{mal_id}}">
+        {{#if title_english}}
+        {{title_english}}
+        {{else}}
+        {{title}}
+        {{/if}}
+      </a></p>
     <a href="/dev/detailsGet/{{mal_id}}"><img src="{{image_url}}" alt=""></a>
   </div>
   {{/each}}

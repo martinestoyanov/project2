@@ -108,17 +108,16 @@ router.get("/userProfile", async (req, res, next) => {
   // const { username } = req.params;
   // res.send(req.session);
   // res.render("users/user-profile", { user: req.session && req.session.userFromDB });
-  console.log(req.session.user.reviews.populate);
-  const user = await User.findById(req.session.user._id) 
-  const userIdString = req.session.user._id
-  const actualUserId = mongoose.Types.ObjectId(userIdString)
-
-  const reviews = await Review.find ({author: actualUserId});
-    console.log(reviews)
-    res.render("users/user-profile", {user: user , reviews: reviews});
+  // console.log(req.session.user.reviews.populate);
 
 
-  
+  const user = await User.findById(req.session.user._id);
+  const userIdString = req.session.user._id;
+  const actualUserId = mongoose.Types.ObjectId(userIdString);
+
+  const reviews = await Review.find({ author: actualUserId });
+  // console.log( "reviews :", reviews, "user :", user );
+  res.render("users/user-profile", { user: user, reviews: reviews });
 });
 
 // Edit routes

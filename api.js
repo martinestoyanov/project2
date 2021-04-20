@@ -1,4 +1,5 @@
 const axios = require("axios");
+const HomeCache = require("./models/HomeCache.model");
 
 const api = axios.create({
   baseURL: "https://api.jikan.moe/v3",
@@ -64,34 +65,65 @@ const top = async (req, res, next) => {
 };
 
 const topAll = async (req, res, next) => {
-  console.log("topAll Begin");
   req.top10all = {};
   let genreMapKeys = Object.keys(genreMap);
   let index = 0;
 
   const intervalID = setInterval(() => {
+    const genreCode = genreMap[genreMapKeys[index]];
     let getUrl =
       "/search/anime?q=&page=1&genre=" +
       genreMap[genreMapKeys[index]] +
       "&order_by=score&sort=desc";
-    console.log(getUrl);
 
-    api
-      .get(getUrl)
-      .then((result) => {
-        req.top10all[genreMapKeys[index]] = result.data.results;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(genreMap[genreMapKeys[index]]);
+
+    HomeCache.findOne({ genreCode: { $eq: genreCode } }).then((result) => {
+      if (!result) {
+        console.log("Nothing in Cache, updating")
+        updateCache();
+      } else {
+        console.log("Cache found!");
+        showCache(result);
+      }
+    });
+
+    function updateCache() {
+      api
+        .get(getUrl)
+        .then((result) => {
+          HomeCache.create({
+            etag: result.headers.etag,
+            genreCode: genreMap[genreMapKeys[index]],
+            results : result.data.results
+          });
+          // console.log(result.data.request_hash);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    function showCache(result) {
+      console.log(result.etag);
+      // req.top10all[genreMapKeys[index]] = result.results;
+    }
+
+    // api
+    //   .get(getUrl)
+    //   .then((result) => {
+    //     console.log(result.headers.etag);
+    //     req.top10all[genreMapKeys[index]] = result.data.results;
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
     index++;
     if (index >= genreMapKeys.length) {
       clearInterval(intervalID);
       next();
     }
   }, 2000);
-
-  // next();
 };
 
 module.exports.topAll = topAll;
