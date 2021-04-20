@@ -87,6 +87,10 @@ const topAll = async (req, res, next) => {
   }, 1500);
 
   // next();
-};;
+};
 
 module.exports.topAll = topAll;
+module.exports.search = search;
+module.exports.details = details;
+module.exports.top = top;
+module.exports.detailsGet = detailsGet;
