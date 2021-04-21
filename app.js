@@ -83,15 +83,15 @@ app.post("/reviews", (req, res) => {
 });
 
 // SHOW
-app.get("/reviews/:id", (req, res) => {
-  Review.findById(req.params.id)
-    .then((review) => {
-      res.render("reviews-show", { review: review });
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-});
+// app.get("/reviews/:id", (req, res) => {
+//   Review.findById(req.params.id)
+//     .then((review) => {
+//       res.render("reviews-show", { review: review });
+//     })
+//     .catch((err) => {
+//       console.log(err.message);
+//     });
+// });
 
 // EDIT
 app.get("/reviews/:id/edit", (req, res) => {
@@ -145,7 +145,8 @@ app.get('/reviews/:id', (req, res) => {
     // fetch its comments
     Comment.find({ reviewId: req.params.id }).then(comments => {
       // respond with the template with both values
-      res.render('reviews-show', { review: review, comments: comments })
+      console.log('148', comments)
+      res.render('reviews-show', { review, comments })
     })
   }).catch((err) => {
     // catch errors
