@@ -114,8 +114,26 @@ router.get("/userProfile", async (req, res, next) => {
   const actualUserId = mongoose.Types.ObjectId(userIdString);
 
   const reviews = await Review.find({ author: actualUserId });
+  const happyGIFs = [
+    "https://i.pinimg.com/originals/25/da/1e/25da1e5c88ea305f9a55a5c69b716116.gif",
+    "https://pa1.narvii.com/5833/8d76b36fe9fea5eea7fb9c7a8d1724751be54152_hq.gif",
+    "https://i.pinimg.com/originals/ab/d7/2e/abd72e8ca2f275b9965fd4d7aa5be2d6.gif",
+    "https://giffiles.alphacoders.com/125/125339.gif",
+    "https://64.media.tumblr.com/5ae32589c11403aab9afe5c3994ec362/tumblr_njf05s56AK1txim35o1_500.gifv",
+    "https://thumbs.gfycat.com/SpiritedGrimHadrosaurus-size_restricted.gif",
+    "https://data.whicdn.com/images/100365953/original.gif",
+    "http://1.bp.blogspot.com/-OqD_2-GUaf4/VR5bxsKfacI/AAAAAAAAFfI/Ml3NWyB3Cyw/s1600/giphy.gif",
+    "https://i.pinimg.com/originals/8b/b4/b1/8bb4b14a035fddf8f69db86c2245a63a.gif",
+    "https://data.whicdn.com/images/219868722/original.gif",
+  ];
+
+  function randomGIF(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  let happyGIF = randomGIF(happyGIFs);
   // console.log( "reviews :", reviews, "user :", user );
-  res.render("users/user-profile", { user: user, reviews: reviews });
+  res.render("users/user-profile", { user: user, reviews: reviews, happyGIF });
 });
 
 // Edit routes

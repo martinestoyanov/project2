@@ -422,6 +422,11 @@ nav .logo.space{
   flex-direction: column;
 }
 
+.profile-gif img {
+  height: 350px;
+  width: 500px;
+}
+
 /* devDetails */
 .anime-header {
   display: flex;
