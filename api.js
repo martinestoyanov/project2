@@ -24,15 +24,13 @@ const search = async (req, res, next) => {
     });
   next();
 };
-const details = async (req, res, next) => {
-  const data = await api
-    .get(`/anime/${req.body.mal_id}`)
-    .then((result) => {
-      req.result = result.data;
-    })
-    .catch((error) => {
-      req.result = error;
-    });
+const details = async (req, _, next) => {
+  try {
+    const result = await api.get(`/anime/${req.body.mal_id}`);
+    req.result = result.data;
+  } catch (error) {
+    req.result = error;
+  }
   next();
 };
 const detailsGet = async (req, res, next) => {
