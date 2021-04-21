@@ -114,7 +114,7 @@ router.get("/userProfile", async (req, res, next) => {
   const actualUserId = mongoose.Types.ObjectId(userIdString);
 
   const happyGIFs = [
-    "https://i.pinimg.com/originals/25/da/1e/25da1e5c88ea305f9a55a5c69b716116.gif",
+    "https://img.17qq.com/images/creaeewwrqx.jpeg",
     "https://pa1.narvii.com/5833/8d76b36fe9fea5eea7fb9c7a8d1724751be54152_hq.gif",
     "https://i.pinimg.com/originals/ab/d7/2e/abd72e8ca2f275b9965fd4d7aa5be2d6.gif",
     "https://giffiles.alphacoders.com/125/125339.gif",
