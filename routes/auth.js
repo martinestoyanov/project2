@@ -113,9 +113,10 @@ router.get("/userProfile", async (req, res, next) => {
   const userIdString = req.session.user._id;
   const actualUserId = mongoose.Types.ObjectId(userIdString);
 
-  const reviews = await Review.find({ author: actualUserId });
-  // console.log( "reviews :", reviews, "user :", user );
-  res.render("users/user-profile", { user: user, reviews: reviews });
+  const reviews = await Review.find({ author: user._id });
+  // reviews.populate;
+  console.log( "reviews :", reviews, "user :", user );
+  res.render("users/user-profile", { user, reviews });
 });
 
 // Edit routes

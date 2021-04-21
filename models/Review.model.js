@@ -12,7 +12,8 @@ const reviewSchema = new Schema({
   
   author: { type: Schema.Types.ObjectId, ref: "User" },
 
-  
+  // get rid of me
+  // comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   
   
   //   user: {

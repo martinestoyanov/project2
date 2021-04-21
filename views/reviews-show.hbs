@@ -19,8 +19,23 @@
 <br>
 <hr>
 
-<form action="/reviews/comments" method="post">
-  <input type="hidden" value="{{review._id}}" name="reviewId">
+<!-- Show Comments -->
+
+    <h2>{{user.username}}</h2>
+ {{#each comments}}
+      <div class="card">
+      <div class="card-block">
+      <h4 class="card-title">{{title}}</h4>
+      <p class="card-text">{{content}}</p>
+      </div>
+      </div>
+    {{/each}}
+
+<br>
+<hr>
+
+ <form action="/reviews/comments" method="post">
+ <input type="hidden" value="{{review._id}}" name="reviewId">
   <fieldset>
     <legend>Add a Comment</legend>
     <!-- TITLE -->
@@ -42,16 +57,3 @@
     <button class="btn btn-primary" type="submit">Save Comment</button>
   </div>
 </form>
-
-<hr>
-
-<!-- Show Comments -->
-
-{{#each comments}}
-<div class="card">
-  <div class="card-block">
-    <h4 class="card-title">{{comments.title}}</h4>
-    <p class="card-text">{{comments.content}}</p>
-  </div>
-</div>
-{{/each}}
