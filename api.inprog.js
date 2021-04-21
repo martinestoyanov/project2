@@ -1,4 +1,6 @@
 const axios = require("axios");
+const { response } = require("./app");
+const { array } = require("./config/cloudinary.config");
 const HomeCache = require("./models/HomeCache.model");
 
 const api = axios.create({
@@ -52,18 +54,16 @@ const detailsGet = async (req, res, next) => {
   next();
 };
 
-const topAll = async (req, res, next) => {
+const topAll = async (req, _, next) => {
   console.log("topAll Begin");
   req.top10all = {};
   let genreMapKeys = Object.keys(genreMap);
   let index = 0;
 
-  const intervalID = setInterval(() => {
-    let getUrl =
+      let getUrl =
       "/search/anime?q=&page=1&genre=" +
       genreMap[genreMapKeys[index]] +
       "&order_by=score&sort=desc";
-    console.log(getUrl);
 
     api
       .get(getUrl)
@@ -73,65 +73,59 @@ const topAll = async (req, res, next) => {
       .catch((err) => {
         console.log(err);
       });
-  });
-};
+  };
 
-// const top = async (req, res, next) => {
-//   const data = await api
-//     .get(`/top/anime/`)
-//     .then((result) => {
-//       req.result = result.data;
-//     })
-//     .catch((error) => {
-//       req.result = error;
-//     });
-//   next();
-// };
 
-// const workingTopAll = async (req, res, next) => {
-//   req.top10all = {};
-//   let genreMapKeys = Object.keys(genreMap);
-//   let index = 0;
+const workingTopAll = async (req, res, next) => {
+  req.top10all = {};
+  let genreMapKeys = Object.keys(genreMap);
+  let index = 0;
 
-//   const home = async (() => {
-//     for (i = 0; i <= genreMapKeys.length; i++){
-//               const x = await checkCache();
+  for (const [genre, id] of Object.entries(genreMap)) {
+    const cacheResult = await checkCache(id);
+    if (!cacheResult) {
+      await updateCache(id);
+      showCache(id);
+    }
+    else showCache(id);
+  }
+}
 
-//   })
+  
 
-// }
-
-// const intervalID = setInterval(() => {
-//   const genreCode = genreMap[genreMapKeys[index]];
-//   let getUrl =
-//     "/search/anime?q=&page=1&genre=" +
-//     genreCode +
-//     "&order_by=score&sort=desc";
-
-//   index++;
-//   if (index >= genreMapKeys.length) {
-//     clearInterval(intervalID);
-//     next();
-//   }
-// }, 2000);
-// };
 
 module.exports.topAll = topAll;
 module.exports.search = search;
 module.exports.details = details;
-// module.exports.top = top;
+module.exports.top = top;
 module.exports.detailsGet = detailsGet;
 
-// async function checkCache() {
-//   HomeCache.findOne({ genreCode: { $eq: genreCode } }).then((result) => {
-//     console.log("Query GC:", genreCode);
-//     if (!result) {
-//       console.log("Nothing in Cache, updating");
-//     } else {
-//       console.log("Cache found!");
-//     }
-//   });
+module.exports = { topAll, search }
+
+//Pseudo-code
+// async fn {
+
 // }
+// [1, 2, 4].forEach(n => {
+//   const responssse = await axios.get(`url${n}`);
+//   if (response.data) {
+//     fn that stores data in mongoDB
+//   }
+// }) 
+///////////////
+
+
+async function checkCache(id) {
+  const cacheResult = await HomeCache.findOne({ genreCode: { $eq: id } });
+    if (!cacheResult) {
+      console.log("Nothing in Cache, updating");
+      return false;
+    } else {
+      console.log("Cache found!");
+      return true;
+    }
+  }
+
 // async function updateCache() {
 //   api
 //     .get(getUrl)

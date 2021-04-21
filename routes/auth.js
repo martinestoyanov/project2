@@ -113,7 +113,6 @@ router.get("/userProfile", async (req, res, next) => {
   const userIdString = req.session.user._id;
   const actualUserId = mongoose.Types.ObjectId(userIdString);
 
-  const reviews = await Review.find({ author: actualUserId });
   const happyGIFs = [
     "https://i.pinimg.com/originals/25/da/1e/25da1e5c88ea305f9a55a5c69b716116.gif",
     "https://pa1.narvii.com/5833/8d76b36fe9fea5eea7fb9c7a8d1724751be54152_hq.gif",
@@ -132,8 +131,10 @@ router.get("/userProfile", async (req, res, next) => {
   }
 
   let happyGIF = randomGIF(happyGIFs);
-  // console.log( "reviews :", reviews, "user :", user );
-  res.render("users/user-profile", { user: user, reviews: reviews, happyGIF });
+  const reviews = await Review.find({ author: user._id });
+  // reviews.populate;
+  console.log("reviews :", reviews, "user :", user);
+  res.render("users/user-profile", { user, reviews, happyGIF });
 });
 
 // Edit routes

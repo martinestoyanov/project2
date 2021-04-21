@@ -44,6 +44,20 @@
     <a href="link to all user reviews">See all</a>
 
     {{!-- Insert commented code from below here --}}
+{{!-- Insert commented code from below here --}}
+
+
+  {{#each reviews}}
+  <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
+
+  <small>{{this.animeTitle}}</small>
+  {{this.description}}
+  <p>Reviewed: {{this.createdAt}}</p><br>
+
+  {{/each}}
+
+  <hr><br>
+  
   </div>
 
   {{else}}
