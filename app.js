@@ -72,7 +72,7 @@ app.get("/reviews/new", (req, res) => {
 // CREATE
 app.post("/reviews", (req, res) => {
   console.log(req.body);
-  Review.create(req.body)
+  Review.create({...req.body, author: req.session.user._id })
     .then((review) => {
       console.log(review);
       res.redirect(`/reviews/${review._id}`); // Redirect to reviews/:id
@@ -132,7 +132,9 @@ app.delete("/reviews/:id", function (req, res) {
 app.post('/reviews/comments', (req, res) => {
   Comment.create(req.body).then((comment) => {
     console.log(comment)
-    res.redirect(`/reviews/${comment.reviewId}`);
+    Review.findByIdAndUpdate(req.body.reviewId, { $push: {comments: comment._id }}).then(review => {
+      res.redirect(`/reviews/${reviewId._id}`);
+    })
   }).catch((err) => {
     console.log(err.message);
   });
@@ -146,7 +148,7 @@ app.get('/reviews/:id', (req, res) => {
     Comment.find({ reviewId: req.params.id }).then(comments => {
       // respond with the template with both values
       console.log('148', comments)
-      res.render('reviews-show', { review, comments })
+      res.render('reviews-show', { review, comments: review.comments })
     })
   }).catch((err) => {
     // catch errors
