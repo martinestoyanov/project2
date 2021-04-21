@@ -3,7 +3,9 @@ const { Schema, model } = require("mongoose");
 const commentSchema = new Schema ({
   title: String,
   content: String,
-  reviewId: { type: Schema.Types.ObjectId, ref: 'Review' }
+  reviewId: { type: Schema.Types.ObjectId, ref: 'Review' },
+  author: { type: Schema.Types.ObjectId, ref: "User" },
+  
 });
 
 const Comment = model("Comment", commentSchema);
