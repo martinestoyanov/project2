@@ -62,8 +62,9 @@ const topAll = async (req, res, next) => {
 
   for (const [genre, id] of Object.entries(genreMap)) {
     console.log("New Loop", genre);
-    const cacheResult = await checkCache(genre, id);
-    req.top10all[genre] = cacheResult;
+    const cacheCheckResult = await checkCache(genre, id);
+    // console.log("cacheCheckResult:", cacheCheckResult);
+    req.top10all[genre] = cacheCheckResult;
   }
 
   async function checkCache(genre, id) {
@@ -74,7 +75,7 @@ const topAll = async (req, res, next) => {
 
     // console.log("77 What findOne found:", ((cacheResult || {}).etag || "Nothing"));
 
-    await api
+    const apiResult = await api
       .get(getUrl, {
         headers: {
           "If-None-Match": (cacheResult || {}).etag || "",
@@ -87,17 +88,17 @@ const topAll = async (req, res, next) => {
             "New info available and entry found, updating entry now."
           );
           HomeCache.findOneAndUpdate(
-            { id: { $eq: cacheResult.id } },
+            { genreCode: { $eq: id } },
             {
               etag: result.headers.etag,
               genre,
               genreCode: id,
-              results: result.results,
+              results: result.data.results,
             },
             { new: true }
           ).then((updatedEntry) => {
             console.log("Entry has been updated!", updatedEntry.etag);
-            return updatedEntry;
+            return updatedEntry.results;
           });
         } else if (result.status == 200 && !cacheResult) {
           console.log(
@@ -114,42 +115,23 @@ const topAll = async (req, res, next) => {
             results: result.data.results,
           }).then((newEntry) => {
             console.log("Entry has been created!", newEntry._id);
-            return newEntry;
+            return newEntry.results;
           });
         }
       })
       .catch((error) => {
         if (error.response.status == 304) {
           console.log("Cache up to date");
+          return cacheResult.results;
         } else console.log(error.response.status, error.response.statusText);
       });
+    return apiResult;
   }
 
-  async function updateCache() {
-    console.log("Ran Update Cache");
-    // api
-    //   .get(getUrl)
-    //   .then((result) => {
-    //     HomeCache.create({
-    //       etag: result.headers.etag,
-    //       genreCode: genreMap[genreMapKeys[index]],
-    //       results: result.data.results,
-    //     }).then((result) => {
-    //       console.log(result.etag);
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-  }
-
-  async function appendCache() {
-    // console.log("Ran Show Cache");
-    // req.top10all[genreMapKeys[index]] = result.results;
-  }
+  // console.log(req.top10all);
+  next();
 };
 
-// next();
 
 module.exports.topAll = topAll;
 module.exports.search = search;
