@@ -1,4 +1,5 @@
 const axios = require("axios");
+const HomeCache = require("./models/HomeCache.model");
 
 const api = axios.create({
   baseURL: "https://api.jikan.moe/v3",
@@ -57,35 +58,98 @@ const top = async (req, res, next) => {
 };
 
 const topAll = async (req, res, next) => {
-  console.log("topAll Begin");
   req.top10all = {};
-  let genreMapKeys = Object.keys(genreMap);
-  let index = 0;
 
-  const intervalID = setInterval(() => {
+  for (const [genre, id] of Object.entries(genreMap)) {
+    console.log("New Loop", genre);
+    const cacheResult = await checkCache(genre, id);
+    req.top10all[genre] = cacheResult;
+  }
+
+  async function checkCache(genre, id) {
     let getUrl =
-      "/search/anime?q=&page=1&genre=" +
-      genreMap[genreMapKeys[index]] +
-      "&order_by=score&sort=desc";
-    console.log(getUrl);
+      "/search/anime?q=&page=1&genre=" + id + "&order_by=score&sort=desc";
 
-    api
-      .get(getUrl)
-      .then((result) => {
-        req.top10all[genreMapKeys[index]] = result.data.results;
+    const cacheResult = await HomeCache.findOne({ genreCode: { $eq: id } });
+
+    // console.log("77 What findOne found:", ((cacheResult || {}).etag || "Nothing"));
+
+    await api
+      .get(getUrl, {
+        headers: {
+          "If-None-Match": (cacheResult || {}).etag || "",
+        },
       })
-      .catch((err) => {
-        console.log(err);
-      });
-    index++;
-    if (index >= genreMapKeys.length) {
-      clearInterval(intervalID);
-      next();
-    }
-  }, 1500);
 
-  // next();
+      .then((result) => {
+        if (result.status == 200 && cacheResult) {
+          console.log(
+            "New info available and entry found, updating entry now."
+          );
+          HomeCache.findOneAndUpdate(
+            { id: { $eq: cacheResult.id } },
+            {
+              etag: result.headers.etag,
+              genre,
+              genreCode: id,
+              results: result.results,
+            },
+            { new: true }
+          ).then((updatedEntry) => {
+            console.log("Entry has been updated!", updatedEntry.etag);
+            return updatedEntry;
+          });
+        } else if (result.status == 200 && !cacheResult) {
+          console.log(
+            "No entry found but data available, creating entry now etag:",
+            result.headers.etag,
+            "Entries length:",
+            result.data.results.length
+          );
+
+          return HomeCache.create({
+            etag: result.headers.etag,
+            genre,
+            genreCode: id,
+            results: result.data.results,
+          }).then((newEntry) => {
+            console.log("Entry has been created!", newEntry._id);
+            return newEntry;
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.response.status == 304) {
+          console.log("Cache up to date");
+        } else console.log(error.response.status, error.response.statusText);
+      });
+  }
+
+  async function updateCache() {
+    console.log("Ran Update Cache");
+    // api
+    //   .get(getUrl)
+    //   .then((result) => {
+    //     HomeCache.create({
+    //       etag: result.headers.etag,
+    //       genreCode: genreMap[genreMapKeys[index]],
+    //       results: result.data.results,
+    //     }).then((result) => {
+    //       console.log(result.etag);
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  }
+
+  async function appendCache() {
+    // console.log("Ran Show Cache");
+    // req.top10all[genreMapKeys[index]] = result.results;
+  }
 };
+
+// next();
 
 module.exports.topAll = topAll;
 module.exports.search = search;

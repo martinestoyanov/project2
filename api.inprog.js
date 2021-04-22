@@ -60,21 +60,20 @@ const topAll = async (req, _, next) => {
   let genreMapKeys = Object.keys(genreMap);
   let index = 0;
 
-      let getUrl =
-      "/search/anime?q=&page=1&genre=" +
-      genreMap[genreMapKeys[index]] +
-      "&order_by=score&sort=desc";
+  let getUrl =
+    "/search/anime?q=&page=1&genre=" +
+    genreMap[genreMapKeys[index]] +
+    "&order_by=score&sort=desc";
 
-    api
-      .get(getUrl)
-      .then((result) => {
-        req.top10all[genreMapKeys[index]] = result.data.results;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+  api
+    .get(getUrl)
+    .then((result) => {
+      req.top10all[genreMapKeys[index]] = result.data.results;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const workingTopAll = async (req, res, next) => {
   req.top10all = {};
@@ -86,21 +85,11 @@ const workingTopAll = async (req, res, next) => {
     if (!cacheResult) {
       await updateCache(id);
       showCache(id);
-    }
-    else showCache(id);
+    } else showCache(id);
   }
-}
+};
 
-  
-
-
-module.exports.topAll = topAll;
-module.exports.search = search;
-module.exports.details = details;
-module.exports.top = top;
-module.exports.detailsGet = detailsGet;
-
-module.exports = { topAll, search }
+module.exports = { topAll, search, details, top, detailsGet };
 
 //Pseudo-code
 // async fn {
@@ -111,37 +100,47 @@ module.exports = { topAll, search }
 //   if (response.data) {
 //     fn that stores data in mongoDB
 //   }
-// }) 
+// })
 ///////////////
-
 
 async function checkCache(id) {
   const cacheResult = await HomeCache.findOne({ genreCode: { $eq: id } });
-    if (!cacheResult) {
-      console.log("Nothing in Cache, updating");
-      return false;
-    } else {
-      console.log("Cache found!");
-      return true;
-    }
-  }
+  api
+    .get(getUrl, {
+      headers: {
+        "If-None-Match": cacheResult.etag,
+      },
+    })
+    .then((result) => {
+      if (result.status == 200) {
+        console.log("New Info avail");
+      }
+      else if (result.status == 304) {
+        console.log("Cache up to date");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
-// async function updateCache() {
-//   api
-//     .get(getUrl)
-//     .then((result) => {
-//       HomeCache.create({
-//         etag: result.headers.etag,
-//         genreCode: genreMap[genreMapKeys[index]],
-//         results: result.data.results,
-//       }).then((result) => {
-//         console.log(result.etag);
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// }
+async function updateCache() {
+  api
+    .get(getUrl)
+    .then((result) => {
+      HomeCache.create({
+        etag: result.headers.etag,
+        genreCode: genreMap[genreMapKeys[index]],
+        results: result.data.results,
+      }).then((result) => {
+        console.log(result.etag);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 // async function showCache() {
 //   console.log(result.etag);
 //   // req.top10all[genreMapKeys[index]] = result.results;
