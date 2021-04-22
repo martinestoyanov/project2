@@ -437,11 +437,20 @@ nav .logo.space{
   display: flex;
   width: 100%;
   height: 75vh;
+  background-color: var(--colorDark);
 }
 
-.anime-header img {
+/* .anime-header img {
   border: none;
   border-radius: 0;
+} */
+
+.anime-header iframe {
+  border-top-left-radius: 1000px;
+  border-top-right-radius: 1000px;
+  border-top: 4px solid var(--colorLight);
+  border-left: 4px solid var(--colorLight);
+  border-right: 4px solid var(--colorLight);
 }
 
 .anime-video {
