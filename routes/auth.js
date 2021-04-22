@@ -113,10 +113,28 @@ router.get("/userProfile", async (req, res, next) => {
   const userIdString = req.session.user._id;
   const actualUserId = mongoose.Types.ObjectId(userIdString);
 
+  const happyGIFs = [
+    "https://pa1.narvii.com/6937/2ec33a8f91e2b8a872059cb03f4a82039f1aad32r1-500-375_hq.gif",
+    "https://pa1.narvii.com/6015/6897c17de8cbfd5f07be3e8da6333050ea79d6e4_hq.gif",
+    "https://i.pinimg.com/originals/ab/d7/2e/abd72e8ca2f275b9965fd4d7aa5be2d6.gif",
+    "https://giffiles.alphacoders.com/125/125339.gif",
+    "https://64.media.tumblr.com/5ae32589c11403aab9afe5c3994ec362/tumblr_njf05s56AK1txim35o1_500.gifv",
+    "https://thumbs.gfycat.com/SpiritedGrimHadrosaurus-size_restricted.gif",
+    "https://data.whicdn.com/images/100365953/original.gif",
+    "http://1.bp.blogspot.com/-OqD_2-GUaf4/VR5bxsKfacI/AAAAAAAAFfI/Ml3NWyB3Cyw/s1600/giphy.gif",
+    "https://i.pinimg.com/originals/8b/b4/b1/8bb4b14a035fddf8f69db86c2245a63a.gif",
+    "https://data.whicdn.com/images/219868722/original.gif",
+  ];
+
+  function randomGIF(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  let happyGIF = randomGIF(happyGIFs);
   const reviews = await Review.find({ author: user._id });
   // reviews.populate;
-  console.log( "reviews :", reviews, "user :", user );
-  res.render("users/user-profile", { user, reviews });
+  console.log("reviews :", reviews, "user :", user);
+  res.render("users/user-profile", { user, reviews, happyGIF });
 });
 
 // Edit routes

@@ -5,7 +5,7 @@
   <img src="https://static.wikia.nocookie.net/d4e1761a-dc9d-4c11-a095-41a0e7c15657" alt="Celebrating Goku">
 </div>
 
-<div class="home-carousel">
+{{!-- <div class="home-carousel">
   {{#each top10}}
   <div class="anime-key">
     <br>
@@ -25,4 +25,24 @@
     {{/each}}
   </div>
   {{/each}}
+</div> --}}
+
+<!-- Swiper -->
+{{#each top10}}
+<div class="swiper-container">
+  <div class="swiper-key">
+    <h2>{{@key}}</h2>
+  </div>
+  <div class="swiper-wrapper">
+    {{#each this}}
+    <div class="swiper-slide">
+      <a href="/dev/detailsGet/{{mal_id}}"><img src="{{this.image_url}}" alt="Anime image" class="anime-card-image"></a>
+      <p><a class="swiper-title" href="/dev/detailsGet/{{mal_id}}"><b>{{this.title}}</b></a></p>
+    </div>
+    {{/each}}
+  </div>
+  <!-- Add Arrows -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
 </div>
+{{/each}}

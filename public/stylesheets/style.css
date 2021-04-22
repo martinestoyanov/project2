@@ -56,13 +56,14 @@ nav{
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 90px;
   padding: 0 100px;
   z-index: 100;
+  border-bottom: 4px solid var(--colorLight);
 }
 nav .logo{
   color: var(--colorLight);
-  font-size: 30px;
+  font-size: 50px;
   font-weight: 600;
   letter-spacing: -1px;
 }
@@ -77,7 +78,7 @@ nav .nav-items li{
 }
 nav .nav-items li a{
   color: var(--colorMain);
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 500;
   text-decoration: none;
 }
@@ -284,99 +285,70 @@ nav .logo.space{
   justify-content: center;
   align-items: center;
   flex-flow: column;
+  margin: 2vh 0;
+  padding-bottom: 3vh;
 }
 
-.home-head h1,
+.home-head h1 {
+  margin-bottom: 2vh;
+  font-size: 3rem;
+}
+
 .home-head img {
-  margin-top: 1vh;
+  height: 500px;
+  width: 800px;
 }
 
-/* Carousel */
-.anime-key {
+/* Carousel slider */
+.swiper-container {
+  width: 85%;
+  height: 375px;
+  margin: 3vh 0;
+}
+
+.swiper-key {
   text-transform: capitalize;
+  padding-left: 1vw;
+  position: relative;
+  z-index: 500;
+  font-size: 1.5rem;
 }
 
-.home-carousel {
-  margin: 0 10vw;
-  overflow: hidden;
-}
+.swiper-slide {
+  text-align: center;
+  background: none;
+  height: 350px;
+  margin-top: 10px;
 
-/* Sidescrolling list */
-.anime-card {
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.anime-card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0 0.45vw;
-  transition: transform .5s ease;
-}
-
-.anime-card-info:hover {
-  transform: scale(1.2);
-}
-
-.anime-card button{
-  display: block;
-  height: 50px;
-  width: 50px;
-  padding: 0 25px;
-  border: none;
-  border-radius: 100%;
-  background-color: var(--colorMain);
-  transition: transform .5s ease;
-  margin-top: 10vh;
-  z-index: 100;
-}
-
-.card-btn:hover {
-  transform: scale(1.2);
-  background-color: var(--colorLight);
-}
-
-.card-btn:active {
-  transform: scale(1);
-  background-color: var(--colorMain);
-}
-
-.card-btn i {
-  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
   align-items: center;
-  justify-content: center;
-  font-size: 1.5em;
-  color: var(--neutralLight);
+  flex-flow: column;
+  transition: transform .5s ease;
 }
 
-.card-btn-left {
-  left: 15vw;
+.swiper-slide:hover {
+  transform: scale(1.15);
 }
 
-.card-btn-right {
-  display: flex;
-  position: absolute;
-  right: 11vw;
-}
-
-.anime-card-image {
+.swiper-slide img {
   width: 200px;
   height: 250px;
 }
 
-.anime-card-title {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-flow: column wrap;
-  padding-top: 1vh;
-  margin-bottom: 1.5vh;
-  width: 200px;
-  text-align: center;
+.swiper-title {
+  text-decoration: none;
+  color: var(--colorMain);
 }
 
 /* Profile Page */
@@ -422,6 +394,11 @@ nav .logo.space{
   flex-direction: column;
 }
 
+.profile-gif img {
+  height: 350px;
+  width: 500px;
+}
+
 /* devDetails */
 .anime-header {
   display: flex;
@@ -432,7 +409,7 @@ nav .logo.space{
 .anime-video {
   object-fit: cover;
   width: 100%;
-  height: 83%;
+  height: 85%;
   position: absolute;
   top: 0;
   left: 0;
@@ -455,19 +432,25 @@ nav .logo.space{
 
 .anime-title {
   color: var(--colorMain);
-  margin-bottom: -20px;
+  margin-bottom: -4vh;
   padding-left: 1rem;
-
+  font-size: 2rem;
 }
 
 /* devShowAll */
+.results-title {
+  margin: 2vh 2vw;
+  font-size: 1.5rem;
+}
+
 .results {
-  width: 100vw;
+  width: 90%;
   display: flex;
   flex-direction: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
+  margin-left: 2vw;
 }
 
 .results-info {
@@ -487,6 +470,7 @@ nav .logo.space{
 .results-info img {
   width: 200px;
   height: 250px;
+  margin-bottom: -1vh;
 }
 
 .results-info p {
@@ -494,10 +478,16 @@ nav .logo.space{
   justify-content: center;
   align-content: center;
   flex-flow: column wrap;
-  padding-top: 1vh;
-  margin-bottom: 1.5vh;
+  /* padding-top: 1vh;
+  margin-bottom: 1.5vh; */
   width: 200px;
   text-align: center;
+}
+
+.results-title {
+  text-decoration: none;
+  color: var(--colorMain);
+  font-size: 1.1rem;
 }
 
 /* Forms */
