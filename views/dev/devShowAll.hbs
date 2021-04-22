@@ -1,14 +1,14 @@
-<h2>Search Results</h2>
+<div class="results-title"><h2>Search Results</h2></div>
 <div class="results">
   {{#each data}}
   <div class="results-info">
-    <p><a href="/dev/detailsGet/{{mal_id}}">
+    <a href="/dev/detailsGet/{{mal_id}}"><img src="{{image_url}}" alt=""></a>
+    <p><a class="results-title" href="/dev/detailsGet/{{mal_id}}"><b>
         {{#if title_english}}
         {{title_english}}
         {{else}}
         {{title}}
-        {{/if}}</a></p>
-    <a href="/dev/detailsGet/{{mal_id}}"><img src="{{image_url}}" alt=""></a>
+        {{/if}}</b></a></p>
   </div>
   {{/each}}
 </div>
