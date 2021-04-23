@@ -6,50 +6,109 @@
     <img class="anime-video" src="{{this.image_url}}" alt="No video to show">
     {{/if}}
 
-    {{!--
-  </div> --}}
-  <div class="anime-display">
-    <div class="anime-image">
-      <img src="{{this.image_url}}" alt="">
-    </div>
+    <div class="anime-display">
+      <div class="anime-image">
+        <img src="{{this.image_url}}" alt="">
+      </div>
 
-    <div class="anime-title">
-      <h1>{{this.title_english}}</h1><br>
+      <div class="anime-title">
+        <h1>{{this.title_english}}</h1><br>
+      </div>
     </div>
   </div>
+
+  <div class="anime-details">
+    <div class="anime-scores">
+      <h3>Critic's Score</h3>
+      <p>{{this.score}}</p>
+
+      <h3>AnimationStation's Score</h3>
+      <p><a href="link to all review of this anime">Some score</a></p>
+    </div>
+
+    <div class="anime-genre">
+      <h3>Genre</h3>
+      {{#each this.genres}}
+      <p>{{name}}</p>
+      {{/each}}
+    </div>
+
+    <div class="anime-air">
+      <h3>Air Dates</h3>
+      <p>{{this.aired.string}}</p>
+
+      <h3>Rating</h3>
+      <p>{{this.rating}}</p>
+    </div>
+  </div>
+
+  <div class="anime-description">
+    <h3>Description</h3>
+    <p>{{this.synopsis}}</p>
+  </div>
+
+  <h3>Reviews</h3>
+  {{#each reviews}}
+  <h2>Review title: <a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
+  <h3>{{this.animeTitle}}</h3>
+  <p>{{this.description}}</p>
+  <p>AnimationStation's Score: {{this.score}}</p>
+  <p>Reviewed: {{dateFormat user.createdAt "MMMM Do, YYYY"}}</p><br>
+  {{else}}
+  <p>No reviews to show, yet.</p>
+  {{/each}}
+
+  <button type="submit">Write a review</button>
+
+  <div class="form">
+  {{#if user}}
+  <fieldset>
+
+    <legend>
+      <h2>New Review</h2>
+    </legend>
+
+    <form method="POST" action="/reviews">
+      {{!-- <input hidden type="text" value="{{user._id}}" name="author"> --}}
+
+      <label for="title">Title:</label>
+      <input type="text" name="title" placeholder="Enter title review"/>
+
+      <div class="review-items">
+        <div>
+          <label for="animeTitle">Anime Title:</label>
+          <input type="text" name="animeTitle" placeholder="{{this.title_english}}"/>
+        </div>
+        <div>
+          <label for="rating">Rating:</label>
+          <select name="score" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="description-text">Description:</label>
+      <textarea id="description-text" name="description" rows="8" cols="40" placeholder="Your review"/></textarea>
+
+      <button type="submit" class="review-button">Save Review</button>
+
+
+    </form>
+
+    <form action="/reviews" method="get" class="review-button">
+      <button type="submit"> Cancel</button>
+    </form>
+
+    {{/if}}
+  </fieldset>
 </div>
-
-
-<br><br>
-
-<h3>Critic's Score</h3>
-<p>{{this.score}}</p>
-
-<br><br>
-
-<h3>AnimationStation's Score</h3>
-<p><a href="link to all review of this anime">Some score</a></p>
-
-<br><br>
-
-<br><br>
-
-<h3>Genre</h3>
-{{#each this.genres}}
-<p>{{name}}</p>
-{{/each}}
-
-<br><br>
-
-<h3>Description</h3>
-<p>{{this.synopsis}}</p>
-
-<br><br>
-
-<h3>Air Dates</h3>
-<p>{{this.aired.string}}</p>
-
-<br><br>
-
-<h3>Rating</h3>
-<p>{{this.rating}}</p>
+</div>
