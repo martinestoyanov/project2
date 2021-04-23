@@ -26,58 +26,29 @@
 
   <br><br><br>
 
-  <div>
 
+  <div class="user-reviews-title">
     <h2>Recently Reviewed Animes</h2>
+    <a href="link to all user reviews">See all</a>
+  </div>
+  <div class="user-review-card">
+    {{#each reviews}}
+    <div class="user-reviews">
+      <a href="/reviews/{{_id}}">
+        <h2>{{title}}</h2>
+      </a>
+      <p>Anime: <b>{{animeTitle}}</b></p>
+      <p>Rating: <b>{{score}}/10</b></p>
+      <p>"{{description}}"</p>
+      <p><i>{{dateFormat createdAt "MMMM Do, YYYY"}}</i></p>
+    </div>
 
-    {{#each user.reviews.[0]}}
-    <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
-    <small>{{this.animeTitle}}</small>
-    <p>Reviewed: {{this.createdAt}}</p><br>
+    {{else}}
+    <p>{{user.username}} has not reviewed any animes yet.</p>
 
     {{/each}}
-
-    <hr><br>
-
-    <p>Display of 3 most recent reviews</p><br>
-
-    <a href="link to all user reviews">See all</a>
-
-    {{!-- Insert commented code from below here --}}
-{{!-- Insert commented code from below here --}}
-
-
-  {{#each reviews}}
-  <h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
-
-  <small>{{this.animeTitle}}</small>
-  {{this.description}}
-  <p>Reviewed: {{this.createdAt}}</p><br>
-
-  {{/each}}
-
-  <hr><br>
-  
   </div>
-
-  {{else}}
-
-  <p>Sorry, stranger. You must be logged in.</p>
-  <img src="https://media0.giphy.com/media/wzWxTUiXRQDYc/200.gif" alt="Luffy picking nose">
 
   {{/if}}
 
 </div>
-
-{{!-- Insert code below into line 47 for review rendering --}}
-
-{{!-- {{#each reviews}}
-<h2><a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
-
-<small>{{this.animeTitle}}</small>
-{{this.description}}
-<p>Reviewed: {{this.createdAt}}</p><br>
-
-{{/each}}
-
-<hr><br> --}}
