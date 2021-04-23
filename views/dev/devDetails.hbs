@@ -66,9 +66,9 @@
     {{/each}}
   </div>
 
-  <button type="submit">Write a review</button>
+  <button onclick="showForm()">Write a review</button>
 
-  <div class="form">
+  <div id="hiddenForm" class="form" style="display: none;">
     {{#if user}}
     <fieldset>
 

@@ -302,8 +302,8 @@ nav .logo.space{
 /* Carousel slider */
 .swiper-container {
   width: 85%;
-  height: 375px;
-  margin: 3vh 0;
+  height: 425px;
+  margin: 2vh 0;
 }
 
 .swiper-key {
@@ -338,7 +338,7 @@ nav .logo.space{
 }
 
 .swiper-slide:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
 .swiper-slide img {
@@ -349,6 +349,11 @@ nav .logo.space{
 .swiper-title {
   text-decoration: none;
   color: var(--colorMain);
+}
+
+.swiper-score {
+  text-decoration: none;
+  color: var(--colorDark);
 }
 
 .swiper-button-next,

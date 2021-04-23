@@ -57,3 +57,14 @@ const swiper = new Swiper(".swiper-container", {
     },
   },
 });
+
+// Hidden forms
+
+function showForm() {
+  let hiddenForm = document.getElementById("hiddenForm");
+  if (hiddenForm.style.display === "none") {
+    hiddenForm.style.display = "";
+  } else {
+    hiddenForm.style.display = "none";
+  }
+}
