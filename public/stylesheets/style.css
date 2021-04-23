@@ -417,7 +417,9 @@ nav .logo.space{
 }
 
 .profile-info span {
-  color: var(--colorMain);
+  text-shadow: 5px 0 4px var(--neutralDark);
+  -webkit-text-stroke: 1.5px var(--colorMain);
+  -webkit-text-fill-color: var(--colorLight);
 }
 
 .profile-gif {
@@ -439,11 +441,6 @@ nav .logo.space{
   height: 75vh;
   background-color: var(--colorDark);
 }
-
-/* .anime-header img {
-  border: none;
-  border-radius: 0;
-} */
 
 .anime-header iframe {
   border-top-left-radius: 1000px;
@@ -482,6 +479,50 @@ nav .logo.space{
   margin-bottom: -4vh;
   padding-left: 1rem;
   font-size: 2rem;
+}
+
+.anime-details {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: row;
+  margin-top: 2vh;
+  font-size: 1.5rem;
+}
+
+.anime-scores,
+.anime-genre,
+.anime-air {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33.3%;
+  flex-flow: column;
+}
+
+.anime-scores p,
+.anime-air p {
+  margin-top: 0.5vh;
+  margin-bottom: 2vh;
+}
+
+.anime-description {
+  margin: 2vh 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.anime-description h3 {
+  font-size: 1.75rem;
+}
+
+.anime-description p {
+  font-size: 1.2rem;
+  margin-top: 0.5vh;
+  margin-bottom: 2vh;
+  line-height: 1.8rem;
 }
 
 /* devShowAll */
