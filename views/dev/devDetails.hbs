@@ -48,15 +48,23 @@
   </div>
 
   <h3>Reviews</h3>
-  {{#each reviews}}
-  <h2>Review title: <a href="/reviews/{{this._id}}">{{this.title}}</a></h2>
-  <h3>{{this.animeTitle}}</h3>
-  <p>{{this.description}}</p>
-  <p>AnimationStation's Score: {{this.score}}</p>
-  <p>Reviewed: {{dateFormat user.createdAt "MMMM Do, YYYY"}}</p><br>
-  {{else}}
-  <p>No reviews to show, yet.</p>
-  {{/each}}
+  <div class="user-review-card">
+    {{#each reviews}}
+    <div class="user-reviews">
+      <a href="/reviews/{{_id}}">
+        <h2>{{title}}</h2>
+      </a>
+      <p>Anime: <b>{{animeTitle}}</b></p>
+      <p>Rating: <b>{{score}}/10</b></p>
+      <p>"{{description}}"</p>
+      <p><i>{{dateFormat createdAt "MMMM Do, YYYY"}}</i></p>
+    </div>
+
+    {{else}}
+    <p>{{this.title_english}} has not been reviewed yet.</p>
+
+    {{/each}}
+  </div>
 
   <button type="submit">Write a review</button>
 

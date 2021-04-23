@@ -724,6 +724,21 @@ nav .logo.space{
   padding-top: 3vh;
 }
 
+/* Error */
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-flow: column;
+  margin: 8vh 25%;
+}
+
+.error h1,
+.error h2 {
+  padding-bottom: 2vh;
+}
+
 /* Footer */
 .footer {
   position: relative;
