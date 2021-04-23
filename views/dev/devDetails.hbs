@@ -6,50 +6,43 @@
     <img class="anime-video" src="{{this.image_url}}" alt="No video to show">
     {{/if}}
 
-    {{!--
-  </div> --}}
-  <div class="anime-display">
-    <div class="anime-image">
-      <img src="{{this.image_url}}" alt="">
-    </div>
+    <div class="anime-display">
+      <div class="anime-image">
+        <img src="{{this.image_url}}" alt="">
+      </div>
 
-    <div class="anime-title">
-      <h1>{{this.title_english}}</h1><br>
+      <div class="anime-title">
+        <h1>{{this.title_english}}</h1><br>
+      </div>
     </div>
   </div>
-</div>
 
+  <div class="anime-details">
+    <div class="anime-scores">
+      <h3>Critic's Score</h3>
+      <p>{{this.score}}</p>
 
-<br><br>
+      <h3>AnimationStation's Score</h3>
+      <p><a href="link to all review of this anime">Some score</a></p>
+    </div>
 
-<h3>Critic's Score</h3>
-<p>{{this.score}}</p>
+    <div class="anime-genre">
+      <h3>Genre</h3>
+      {{#each this.genres}}
+      <p>{{name}}</p>
+      {{/each}}
+    </div>
 
-<br><br>
+    <div class="anime-air">
+      <h3>Air Dates</h3>
+      <p>{{this.aired.string}}</p>
 
-<h3>AnimationStation's Score</h3>
-<p><a href="link to all review of this anime">Some score</a></p>
+      <h3>Rating</h3>
+      <p>{{this.rating}}</p>
+    </div>
+  </div>
 
-<br><br>
-
-<br><br>
-
-<h3>Genre</h3>
-{{#each this.genres}}
-<p>{{name}}</p>
-{{/each}}
-
-<br><br>
-
-<h3>Description</h3>
-<p>{{this.synopsis}}</p>
-
-<br><br>
-
-<h3>Air Dates</h3>
-<p>{{this.aired.string}}</p>
-
-<br><br>
-
-<h3>Rating</h3>
-<p>{{this.rating}}</p>
+  <div class="anime-description">
+    <h3>Description</h3>
+    <p>{{this.synopsis}}</p>
+  </div>
