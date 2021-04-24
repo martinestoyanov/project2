@@ -5,5 +5,3 @@ document.addEventListener(
   },
   false
 );
-
-

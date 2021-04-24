@@ -302,8 +302,8 @@ nav .logo.space{
 /* Carousel slider */
 .swiper-container {
   width: 85%;
-  height: 375px;
-  margin: 3vh 0;
+  height: 425px;
+  margin: 2vh 0;
 }
 
 .swiper-key {
@@ -349,6 +349,11 @@ nav .logo.space{
 .swiper-title {
   text-decoration: none;
   color: var(--colorMain);
+}
+
+.swiper-score {
+  text-decoration: none;
+  color: var(--colorDark);
 }
 
 .swiper-button-next,
@@ -432,6 +437,62 @@ nav .logo.space{
 .profile-gif img {
   height: 350px;
   width: 500px;
+}
+
+.user-reviews-title {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-end;
+  margin: 1vh 0 3vh 0;
+}
+
+.user-reviews-title h2 {
+  font-size: 2rem;
+  padding: 0;
+  margin: 0 0.5vw;
+}
+
+.user-reviews-title a {
+  margin-bottom: 0.5vh;
+}
+
+.user-reviews-card {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-left: 2vw;
+}
+
+.user-reviews {
+  /* border-left: 2px solid var(--colorMain);
+  border-right: 2px solid var(--colorMain); */
+  display: flex;
+  align-items: flex-start;
+  flex-flow: column wrap;
+  justify-content: center;
+  padding: 1vh 0.45vw;
+  line-height: 1.5rem;
+}
+
+.results-info {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  text-align: center;
+  justify-content: center;
+  padding: 1vh 0.45vw;
+  transition: transform .5s ease;
+}
+
+.user-reviews a {
+  text-decoration: none;
+}
+
+.user-reviews p {
+  width: 33vw;
 }
 
 /* devDetails */
@@ -566,8 +627,6 @@ nav .logo.space{
   justify-content: center;
   align-content: center;
   flex-flow: column wrap;
-  /* padding-top: 1vh;
-  margin-bottom: 1.5vh; */
   width: 200px;
   text-align: center;
 }
@@ -668,6 +727,21 @@ nav .logo.space{
 
 .feedback-email {
   padding-top: 3vh;
+}
+
+/* Error */
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-flow: column;
+  margin: 8vh 25%;
+}
+
+.error h1,
+.error h2 {
+  padding-bottom: 2vh;
 }
 
 /* Footer */
