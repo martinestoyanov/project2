@@ -1,7 +1,7 @@
 <a href="/reviews">Back to Reviews</a>
 
 <h1>{{review.title}}</h1>
-<h2>{{review.author}}</h2>
+<h2 hidden>{{review.author}}</h2>
 <h2>{{review.animeTitle}}</h2>
 <p>{{review.description}}</p>
 <p>AnimationStation's Score: {{this.score}}</p>
@@ -62,7 +62,7 @@
       <textarea class="form-control" id="comment-content" name="content" rows="10"
         placeholder="Your comment..." /></textarea>
     </div>
-    <input type="text" value="{{user.username}}" name="author" />
+    <input hidden type="text" value="{{user.username}}" name="author" />
   </fieldset>
 
   <!-- BUTTON -->
