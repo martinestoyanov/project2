@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const api = require("../api");
+const Review = require("../models/Review.model");
 
 router.get("/", (req, res, next) => {
   res.render("./dev/devSearch");
@@ -20,7 +21,9 @@ router.post("/details", api.details, (req, res, next) => {
   // res.send(req.result);
 });
 router.get("/detailsGet/:mal_id", api.detailsGet, (req, res, next) => {
-  res.render("./dev/devDetails", req.result);
+  Review.find({ mal_id: { $eq: req.params.mal_id } }).then((allReviews) => {
+    res.render("./dev/devDetails", { result: req.result, reviews: allReviews });
+      })
   // res.send(req.result);
 });
 
