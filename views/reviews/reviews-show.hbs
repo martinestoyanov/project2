@@ -1,12 +1,13 @@
 <a href="/reviews">Back to Reviews</a>
 
 <h1>{{review.title}}</h1>
-<h2>{{user.username}}</h2>
+<h2>{{review.author}}</h2>
 <h2>{{review.animeTitle}}</h2>
 <p>{{review.description}}</p>
 <p>AnimationStation's Score: {{this.score}}</p>
 <p>Reviewed: {{this.createdAt}}</p><br>
 
+{{#if user.username}}
 <p><a href="/reviews/{{review._id}}/edit">Edit</a></p>
 
 <!-- Delete button -->
@@ -18,26 +19,37 @@
 
 <br>
 <hr>
+{{/if}}
+
 
 <!-- Show Comments -->
 
-    <h2>{{user.username}}</h2>
- {{#each comments}}
-      <div class="card">
-      <div class="card-block">
-      <h4 class="card-title">{{title}}</h4>
-      <p class="card-text">{{content}}</p>
-      </div>
-      </div>
-    {{/each}}
+{{#each comments}}
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">{{title}}</h4>
+    <h2>{{author}}</h2>
+
+    <p class="card-text">{{content}}</p>
+  </div>
+</div>
+{{/each}}
 
 <br>
 <hr>
 
- <form action="/reviews/comments" method="post">
- <input type="hidden" value="{{review._id}}" name="reviewId">
+
+{{#if user}}
+<form action="/reviews/comments" method="post">
+  <input type="hidden" value="{{review._id}}" name="reviewId">
   <fieldset>
     <legend>Add a Comment</legend>
+
+
+
+
+
+
     <!-- TITLE -->
     <div class="form-group">
       <label for="comment-title">Title</label><br>
@@ -50,6 +62,7 @@
       <textarea class="form-control" id="comment-content" name="content" rows="10"
         placeholder="Your comment..." /></textarea>
     </div>
+    <input type="text" value="{{user.username}}" name="author" />
   </fieldset>
 
   <!-- BUTTON -->
@@ -57,3 +70,4 @@
     <button class="btn btn-primary" type="submit">Save Comment</button>
   </div>
 </form>
+{{/if}}

@@ -131,17 +131,17 @@ app.use("/reviews/", reviews);
 // //   res.send('reviews comment')
 // // });
 
-// // CREATE Comment
-// app.post('/reviews/comments', (req, res) => {
-//   Comment.create(req.body).then((comment) => {
-//     console.log(comment)
-//     Review.findByIdAndUpdate(req.body.reviewId, { $push: {comments: comment._id }}).then(review => {
-//       res.redirect(`/reviews/${reviewId._id}`);
-//     })
-//   }).catch((err) => {
-//     console.log(err.message);
-//   });
-// });
+// CREATE Comment
+app.post('/reviews/comments', (req, res) => {
+  Comment.create(req.body).then((comment) => {
+    console.log(comment)
+    Review.findByIdAndUpdate(req.body.reviewId, { $push: {comments: comment._id }}).then(review => {
+      res.redirect(`/reviews/${req.body.reviewId}`);
+    })
+  }).catch((err) => {
+    console.log(err.message);
+  });
+});
 
 // // SHOW
 // app.get('/reviews/:id', (req, res) => {

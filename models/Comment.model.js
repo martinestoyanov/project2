@@ -1,11 +1,11 @@
 const { Schema, model } = require("mongoose");
 
-const commentSchema = new Schema ({
+const commentSchema = new Schema({
   title: String,
   content: String,
-  reviewId: { type: Schema.Types.ObjectId, ref: 'Review' },
-  author: { type: Schema.Types.ObjectId, ref: "User" },
-  
+  reviewId: { type: Schema.Types.ObjectId, ref: "Review" },
+  // author: { type: Schema.Types.ObjectId, ref: "User" },
+  author: { type: String },
 });
 
 const Comment = model("Comment", commentSchema);

@@ -31,7 +31,6 @@ router.post("/", (req, res) => {
     });
 });
 
-
 // EDIT
 router.get("/:id/edit", (req, res) => {
   Review.findById(req.params.id, function (err, review) {
@@ -42,18 +41,20 @@ router.get("/:id/edit", (req, res) => {
 // UPDATE
 router.put("/:id", (req, res) => {
   Review.findByIdAndUpdate(req.params.id, req.body)
-  .then((review) => {
-    res.redirect(`/reviews/${review._id}`);
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+    .then((review) => {
+      res.redirect(`/reviews/${review._id}`);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 });
 // SHOW
 router.get("/:id", (req, res) => {
   Review.findById(req.params.id)
     .then((review) => {
-      res.render("./reviews/reviews-show", { review: review });
+      Comment.find({ reviewId: { $eq: req.params.id } }).then((comments) => {
+        res.render("./reviews/reviews-show", { review, comments });
+      });
     })
     .catch((err) => {
       console.log(err.message);
