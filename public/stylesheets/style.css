@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
 
 :root {
-  --colorLight: hsl(197, 69%, 60%);
-  --colorMain: hsl(197, 69%, 30%);
-  --colorDark: hsl(197, 69%, 10%);
+  --colorLight: #53b7df;
+  --colorMain: #186381;
+  --colorDark: #08212b;
 
   --neutralLight: hsl(180, 6%, 88%);
   --neutralDark: hsl(180, 6%, 5%);
@@ -425,6 +425,7 @@ nav .logo.space{
   text-shadow: 5px 0 4px var(--neutralDark);
   -webkit-text-stroke: 1.5px var(--colorMain);
   -webkit-text-fill-color: var(--colorLight);
+  margin-right: 1vw;
 }
 
 .profile-gif {

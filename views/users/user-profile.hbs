@@ -14,7 +14,10 @@
     <div class="profile-info">
       <p><span><i><b>{{user.username}}'s email: </b></i></span>{{user.email}}</p><br>
       <p><span><i><b>Member since: </b></i></span>{{dateFormat user.createdAt "MMMM Do, YYYY"}}</p><br>
-      <p><span><i><b>Total animes reviewed: </b></i></span><a href="review link">some number</a></p><br>
+      <p><span><i><b>Total animes reviewed: </b></i></span>{{#if
+        reviews}}<a href="#reviews">{{reviews.length}}</a>{{else}}You have not yet reviewed an anime.{{/if}}</p>
+      <br>
+
     </div>
 
   </div>
@@ -27,7 +30,7 @@
   <br><br><br>
 
 
-  <div class="user-reviews-title">
+  <div id="reviews" class="user-reviews-title">
     <h2>Recently Reviewed Animes</h2>
     <a href="link to all user reviews">See all</a>
   </div>
